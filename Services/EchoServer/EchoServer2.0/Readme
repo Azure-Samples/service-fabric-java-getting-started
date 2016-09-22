@@ -1,0 +1,1 @@
+This is a sample EchoServer application. Using command in install.sh, echo server app can be upgraded from version 1.0 to version 2.0. After upgrading the application, go to the browser and type in http://localhost:8508/getMessage, to see '[version 2.0]Hello World !!!'. If you type in http://localhost:8508/getMessage/?John, you should see '[version 2.0]Hello John!!!'

@@ -1,0 +1,60 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceSets {
+  main {
+	java.srcDirs = ['src']
+    output.classesDir = 'out/classes'
+    resources {
+		srcDirs = ['src']
+    }
+   }
+}
+
+dependencies {
+    compile fileTree(dir: '../../../lib', include: ['*.jar'])
+	compile project(':Interface')
+}
+
+clean.doFirst {
+	delete "${projectDir}/out"
+}
+
+jar 
+{
+	manifest {
+    attributes(
+		'Main-Class': 'counterclient.CounterClient',
+		"Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
+	}
+	baseName "ActorCounterTest"
+    destinationDir = file('out/lib')
+}
+
+task copyDeps<< {
+        copy {
+                from("../../../lib")
+                into("./out/lib/lib")
+                include('*.jar')
+        }
+        copy {
+                from("../../../lib")
+                into("./out/lib/lib")
+                include('libjFabricRuntime.so')
+        }
+        copy {
+                from("../../../lib")
+                into("./out/lib/lib")
+                include('jFabricRuntime.dll')
+        }
+        copy {
+                from("../CounterInterface/out/lib")
+                into("./out/lib/lib")
+                include('*.jar')
+        }
+}
+defaultTasks 'clean', 'jar', 'copyDeps'
+
+
+
+

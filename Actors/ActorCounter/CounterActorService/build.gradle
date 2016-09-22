@@ -1,0 +1,66 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-g"
+        }
+    }
+}
+
+sourceSets {
+  main {
+     java.srcDirs = ['src']
+     output.classesDir = 'out/classes'
+      resources {
+       srcDirs = ['src']
+     }
+   }
+}
+
+dependencies {
+    compile fileTree(dir: './../../../lib', include: ['*.jar'])
+	compile project(':Interface')
+}
+
+clean.doFirst {
+  delete "${projectDir}/out"
+	delete "${projectDir}/../CounterActorApplication/CounterActorPkg/Code/lib"
+  delete "${projectDir}/../CounterActorApplication/CounterActorPkg/Code/actorcounter.counter.jar"
+}
+
+jar {
+    manifest {
+    attributes(
+                'Main-Class': 'counteractor.CounterActor',
+                "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
+	  baseName "actorcounter.counter"
+    destinationDir = file('./../CounterActorApplication/CounterActorPkg/Code')
+    }
+}
+
+task copyDeps<< {
+	copy {
+		from("../../../lib")
+		into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+		include('*.jar')
+	}
+	copy {
+		from("../../../lib")
+		into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+		include('libjFabricRuntime.so')
+	}
+  copy {
+    from("../../../lib")
+    into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+    include('jFabricRuntime.dll')
+  }
+	copy {
+		from("../CounterInterface/out/lib")
+		into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+		include('*.jar')
+	}
+}
+
+defaultTasks 'clean', 'jar', 'copyDeps'

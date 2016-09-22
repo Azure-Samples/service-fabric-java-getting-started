@@ -1,0 +1,1 @@
+Implements a counter. Uses Actor (persisted, volatile or null state-provider) programming paradigm. You need to go inside TestClient and build it and run it as a console application after you have done deploying the Service, to see the effect.

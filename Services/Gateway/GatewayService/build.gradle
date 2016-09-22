@@ -1,0 +1,60 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceSets {
+  main {
+     java.srcDirs = ['src']
+     output.classesDir = 'out/classes'
+      resources {
+       srcDirs = ['src']
+     }
+   }
+}
+
+dependencies {
+    compile fileTree(dir: './../../../lib', include: ['*.jar'])
+	compile project(':Interface')
+}
+
+clean.doFirst {
+	delete "${projectDir}/out"
+	delete "${projectDir}/../GatewayApplication/GatewayPkg/Code/gateway.jar"
+	delete "${projectDir}/../GatewayApplication/GatewayPkg/Code/lib"
+}
+
+jar {
+    manifest {
+    attributes(
+                'Main-Class': 'gateway.Gateway',
+                "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
+    baseName "gateway"
+    destinationDir = file('./../GatewayApplication/GatewayPkg/Code')
+}
+}
+
+
+task copyDeps <<{
+	copy {
+		from("../../../lib")
+		into("./../GatewayApplication/GatewayPkg/Code/lib")
+		include('*.jar')
+	}
+	copy {
+		from("../../../lib")
+		into("./../GatewayApplication/GatewayPkg/Code/lib")
+		include('libjFabricRuntime.so')
+	}
+	copy {
+		from("../../../lib")
+		into("./../GatewayApplication/GatewayPkg/Code/lib")
+		include('jFabricRuntime.dll')
+	}
+	copy {
+		from("../../../Actors/ActorCounter/CounterInterface/out/lib")
+		into("./../GatewayApplication/GatewayPkg/Code/lib")
+		include('*.jar')
+	}
+}
+
+
+defaultTasks 'clean', 'jar', 'copyDeps'

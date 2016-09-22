@@ -1,0 +1,3 @@
+include ':Interface'
+
+project(':Interface').projectDir = new File(settingsDir, '../../Actors/ActorCounter/CounterInterface')

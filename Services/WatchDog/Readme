@@ -1,0 +1,1 @@
+This app tests if EchoServer application is running fine or not. To run watchdog, you need to have your EchoServer application up and running. This app pings EchoServerApp and in case of error update the EchoServer service health to Warning state.

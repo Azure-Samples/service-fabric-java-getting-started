@@ -17,3 +17,16 @@ nuget.exe
 .settings
 *.sln.ide
 
+# For Java
+.gradle
+*.class
+.classpath
+.project
+/**/build/**/*
+# Package Files #
+*.jar
+*.war
+*.ear
+*.dll
+*.so
+

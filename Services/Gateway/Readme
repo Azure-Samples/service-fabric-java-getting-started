@@ -1,0 +1,2 @@
+Gateway app acts as a Gateway to connect to actor service. To create actor url is http://<ip>:<port>/Actor/<Actor Id> . For example http://localhost:12346/Actor/Actor1
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationManifest
+  ApplicationTypeName="EchoServerApplicationType"
+  ApplicationTypeVersion="1.0.0"
+  xmlns="http://schemas.microsoft.com/2011/01/fabric"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  >
+  <Description>EchoServer Application</Description>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="EchoServerPkg" ServiceManifestVersion="1.0.0"/>
+  </ServiceManifestImport>
+  <Parameters>
+    <Parameter Name="InstanceCount" DefaultValue="1" />
+  </Parameters>
+  <DefaultServices>
+      <Service Name="EchoServer">
+         <StatelessService ServiceTypeName="EchoServerType" InstanceCount="[InstanceCount]">
+            <SingletonPartition />
+         </StatelessService>
+      </Service>      
+   </DefaultServices>      
+</ApplicationManifest>

@@ -1,0 +1,1 @@
+This is a sample EchoServer application. After deploying application, go to browser and type in http://localhost:8508/getMessage, you should see '[version 1.0]Hello World !!!'. If you type in http://localhost:8508/getMessage/?John, you should see '[version 1.0]Hello John!!!'

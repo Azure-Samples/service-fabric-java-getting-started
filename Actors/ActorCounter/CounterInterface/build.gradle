@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceSets {
+  main {
+     java.srcDirs = ['src']
+     output.classesDir = 'out/classes'
+      resources {
+       srcDirs = ['src']
+     }
+   }
+}
+
+dependencies {
+    compile fileTree(dir: '../../../lib', include: ['*.jar'])
+}
+
+clean.doFirst {
+	delete "${projectDir}/out"
+}
+
+jar {
+	baseName "actorcounter.counterinterface"
+    destinationDir = file('out/lib')
+}
+
+defaultTasks 'clean', 'jar'

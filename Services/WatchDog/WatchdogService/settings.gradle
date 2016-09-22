@@ -1,0 +1,3 @@
+include ':EchoServer:EchoServer1.0:EchoServerService'
+
+project(':EchoServer:EchoServer1.0:EchoServerService').projectDir = new File(settingsDir, '../EchoServer/EchoServer1.0/EchoServerService')

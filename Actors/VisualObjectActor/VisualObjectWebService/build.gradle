@@ -1,0 +1,66 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-g"
+        }
+    }
+}
+
+sourceSets {
+  main {
+     java.srcDirs = ['src']
+     output.classesDir = 'out/classes'
+      resources {
+       srcDirs = ['src']
+     }
+   }
+}
+
+dependencies {
+    compile fileTree(dir: './../../../lib', include: ['*.jar'])
+    compile project(':VisualObjectCommon')
+}
+
+clean.doFirst {
+	delete "${projectDir}/out"
+  delete "${projectDir}/../VisualObjectApplication/VisualObjects.WebServicePkg/Code/visualobjectactor.webservice.jar"
+  delete "${projectDir}/../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib"
+}
+
+jar {
+    manifest {
+    attributes(
+                'Main-Class': 'visualobjectwebservice.VisualObjectWebService',
+                "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
+	baseName "visualobjectactor.webservice"
+    destinationDir = file('../VisualObjectApplication/VisualObjects.WebServicePkg/Code')
+    }
+}
+
+task copyDeps<< {
+	copy {
+		from("./../../../lib")
+		into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
+		include('*.jar')
+	}
+	copy {
+		from("./../../../lib")
+		into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
+		include('libjFabricRuntime.so')
+	}
+    copy {
+        from("./../../../lib")
+        into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
+        include('jFabricRuntime.dll')
+    }
+	copy {
+		from("./../VisualObjectCommon/out/lib")
+		into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
+		include('*.jar')
+	}
+}
+
+defaultTasks 'clean', 'jar', 'copyDeps'

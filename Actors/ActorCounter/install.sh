@@ -1,0 +1,3 @@
+azuresfcli servicefabric application package copy CounterActorApplication fabric:ImageStore
+azuresfcli servicefabric application type register CounterActorApplication
+azuresfcli servicefabric application create fabric:/CounterActorApplication  CounterActorApplicationType  1.0.0

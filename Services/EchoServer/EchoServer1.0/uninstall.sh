@@ -1,0 +1,2 @@
+azuresfcli servicefabric application remove fabric:/EchoServerApplication
+azuresfcli servicefabric application type unregister EchoServerApplicationType 1.0.0

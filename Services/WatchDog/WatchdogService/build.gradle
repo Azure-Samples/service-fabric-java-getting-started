@@ -1,0 +1,51 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+sourceSets {
+  main {
+     java.srcDirs = ['src']
+     output.classesDir = 'out/classes'
+      resources {
+       srcDirs = ['src']
+     }
+   }
+}
+
+dependencies {
+    compile fileTree(dir: './../../../lib', include: ['*.jar'])
+}
+
+clean.doFirst {
+	delete "${projectDir}/out"
+	delete "${projectDir}/../WatchdogApplication/WatchdogPkg/Code/watchdog.jar"
+	delete "${projectDir}/../WatchdogApplication/WatchdogPkg/Code/lib"
+}
+
+jar {
+	manifest {
+    attributes(
+		'Main-Class': 'watchdog.WatchDog',
+		"Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
+	baseName "watchdog"
+    destinationDir = file('./../WatchdogApplication/WatchdogPkg/Code/')
+    }
+}
+
+task copyDeps<< {
+	copy {
+		from("../../../lib")
+		into("./../WatchdogApplication/WatchdogPkg/Code/lib")
+		include('*.jar')
+	}
+	copy {
+		from("../../../lib")
+		into("./../WatchdogApplication/WatchdogPkg/Code/lib")
+		include('libjFabricRuntime.so')
+	}
+	copy {
+		from("../../../lib")
+		into("./../WatchdogApplication/WatchdogPkg/Code/lib")
+		include('jFabricRuntime.dll')
+	}
+}
+
+defaultTasks 'clean', 'jar', 'copyDeps'

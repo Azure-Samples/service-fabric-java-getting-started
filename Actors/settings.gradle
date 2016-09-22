@@ -1,0 +1,8 @@
+include ':Interface'
+include ':ActorCounter:CounterActorService', ':ActorCounter:TestClient'
+include ':VisualObjectActor:VisualObjectCommon', ':VisualObjectActor:VisualObjectActorService',':VisualObjectActor:VisualObjectWebService'
+include ':VisualObjectCommon'
+
+
+project(':Interface').projectDir = new File(settingsDir, 'ActorCounter/CounterInterface')
+project(':VisualObjectCommon').projectDir = new File(settingsDir, 'VisualObjectActor/VisualObjectCommon')
