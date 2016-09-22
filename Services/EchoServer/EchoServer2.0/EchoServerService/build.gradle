@@ -12,41 +12,36 @@ sourceSets {
 }
 
 dependencies {
-    compile fileTree(dir: './../../../../lib', include: ['*.jar'])
+    compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
 }
 
 clean.doFirst {
-	delete "${projectDir}/out"
+    delete "${projectDir}/out"
     delete "${projectDir}/../EchoServerApplication2/EchoServerPkg/Code/lib"
-	delete "${projectDir}/../EchoServerApplication2/EchoServerPkg/Code/echoserver.jar"
+    delete "${projectDir}/../EchoServerApplication2/EchoServerPkg/Code/echoserver.jar"
 }
 
 jar {
-	manifest {
+    manifest {
     attributes(
-		'Main-Class': 'echoserver.EchoServer',
-		"Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
-	baseName "echoserver"
+        'Main-Class': 'echoserver.EchoServer',
+        "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
+    baseName "echoserver"
     destinationDir = file('./../EchoServerApplication2/EchoServerPkg/Code/')
     }
 }
 
 task copyDeps<< {
-	copy {
-		from("../../../../lib")
-		into("./../EchoServerApplication2/EchoServerPkg/Code/lib")
-		include('*.jar')
-	}
-	copy {
-		from("../../../../lib")
-		into("./../EchoServerApplication2/EchoServerPkg/Code/lib")
-		include('libjFabricRuntime.so')
-	}
-	copy {
-		from("../../../../lib")
-		into("./../EchoServerApplication2/EchoServerPkg/Code/lib")
-		include('jFabricRuntime.dll')
-	}
+    copy {
+        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
+        into("./../EchoServerApplication2/EchoServerPkg/Code/lib")
+        include('*.jar')
+    }
+    copy {
+        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
+        into("./../EchoServerApplication2/EchoServerPkg/Code/lib")
+        include('libjFabricRuntime.so')
+    }
 }
 
 

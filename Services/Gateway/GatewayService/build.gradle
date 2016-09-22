@@ -12,14 +12,14 @@ sourceSets {
 }
 
 dependencies {
-    compile fileTree(dir: './../../../lib', include: ['*.jar'])
-	compile project(':Interface')
+    compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
+    compile project(':Interface')
 }
 
 clean.doFirst {
-	delete "${projectDir}/out"
-	delete "${projectDir}/../GatewayApplication/GatewayPkg/Code/gateway.jar"
-	delete "${projectDir}/../GatewayApplication/GatewayPkg/Code/lib"
+    delete "${projectDir}/out"
+    delete "${projectDir}/../GatewayApplication/GatewayPkg/Code/gateway.jar"
+    delete "${projectDir}/../GatewayApplication/GatewayPkg/Code/lib"
 }
 
 jar {
@@ -34,26 +34,21 @@ jar {
 
 
 task copyDeps <<{
-	copy {
-		from("../../../lib")
-		into("./../GatewayApplication/GatewayPkg/Code/lib")
-		include('*.jar')
-	}
-	copy {
-		from("../../../lib")
-		into("./../GatewayApplication/GatewayPkg/Code/lib")
-		include('libjFabricRuntime.so')
-	}
-	copy {
-		from("../../../lib")
-		into("./../GatewayApplication/GatewayPkg/Code/lib")
-		include('jFabricRuntime.dll')
-	}
-	copy {
-		from("../../../Actors/ActorCounter/CounterInterface/out/lib")
-		into("./../GatewayApplication/GatewayPkg/Code/lib")
-		include('*.jar')
-	}
+    copy {
+        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
+        into("./../GatewayApplication/GatewayPkg/Code/lib")
+        include('*.jar')
+    }
+    copy {
+        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
+        into("./../GatewayApplication/GatewayPkg/Code/lib")
+        include('libjFabricRuntime.so')
+    }
+    copy {
+        from("../../../Actors/ActorCounter/CounterInterface/out/lib")
+        into("./../GatewayApplication/GatewayPkg/Code/lib")
+        include('*.jar')
+    }
 }
 
 

@@ -20,13 +20,13 @@ sourceSets {
 }
 
 dependencies {
-    compile fileTree(dir: './../../../lib', include: ['*.jar'])
-	compile project(':Interface')
+    compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
+    compile project(':Interface')
 }
 
 clean.doFirst {
   delete "${projectDir}/out"
-	delete "${projectDir}/../CounterActorApplication/CounterActorPkg/Code/lib"
+    delete "${projectDir}/../CounterActorApplication/CounterActorPkg/Code/lib"
   delete "${projectDir}/../CounterActorApplication/CounterActorPkg/Code/actorcounter.counter.jar"
 }
 
@@ -35,32 +35,27 @@ jar {
     attributes(
                 'Main-Class': 'counteractor.CounterActor',
                 "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
-	  baseName "actorcounter.counter"
+      baseName "actorcounter.counter"
     destinationDir = file('./../CounterActorApplication/CounterActorPkg/Code')
     }
 }
 
 task copyDeps<< {
-	copy {
-		from("../../../lib")
-		into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-		include('*.jar')
-	}
-	copy {
-		from("../../../lib")
-		into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-		include('libjFabricRuntime.so')
-	}
-  copy {
-    from("../../../lib")
-    into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-    include('jFabricRuntime.dll')
-  }
-	copy {
-		from("../CounterInterface/out/lib")
-		into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-		include('*.jar')
-	}
+    copy {
+        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
+        into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+        include('*.jar')
+    }
+    copy {
+        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
+        into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+        include('libjFabricRuntime.so')
+    }
+    copy {
+        from("../CounterInterface/out/lib")
+        into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+        include('*.jar')
+    }
 }
 
 defaultTasks 'clean', 'jar', 'copyDeps'

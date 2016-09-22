@@ -12,15 +12,15 @@ sourceSets {
 }
 
 dependencies {
-    compile fileTree(dir: '../../../lib', include: ['*.jar'])
+    compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
 }
 
 clean.doFirst {
-	delete "${projectDir}/out"
+    delete "${projectDir}/out"
 }
 
 jar {
-	baseName "actorcounter.counterinterface"
+    baseName "actorcounter.counterinterface"
     destinationDir = file('out/lib')
 }
 
