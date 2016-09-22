@@ -6,7 +6,7 @@ author: raunakp
 
 # Getting started with Service Fabric with Java
 
-This repository contains a set of simple sample projects to help you getting started with Service Fabric on Linux using java as the development language. 
+This repository contains a set of simple sample projects to help you getting started with Service Fabric on Linux using java as the development language. As a pre requisite ensure you have the Service Fabric Java SDK installed on ubuntu box. 
 
 ## How the samples are organized
 
