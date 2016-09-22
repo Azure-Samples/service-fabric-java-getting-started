@@ -10,9 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import microsoft.servicefabric.services.runtime.ServiceRuntime;
 
-public class WatchDog {
+public class WatchDogServiceHost {
 
-    private static final Logger logger = Logger.getLogger(WatchDog.class.getName());
+    private static final Logger logger = Logger.getLogger(WatchDogServiceHost.class.getName());
 
     public static void main(String[] args) throws Exception {
         try {
