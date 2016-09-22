@@ -1,7 +1,7 @@
 ---
 services: service-fabric
 platforms: java
-author: raunakp
+author: vturecek, raunakp
 ---
 
 # Getting started with Service Fabric with Java
