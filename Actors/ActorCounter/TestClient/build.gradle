@@ -12,7 +12,7 @@ sourceSets {
 }
 
 dependencies {
-    compile fileTree(dir: '../../../lib', include: ['*.jar'])
+    compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
 	compile project(':Interface')
 }
 
@@ -33,19 +33,14 @@ jar
 
 task copyDeps<< {
         copy {
-                from("../../../lib")
+                from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
                 into("./out/lib/lib")
                 include('*.jar')
         }
         copy {
-                from("../../../lib")
+                from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
                 into("./out/lib/lib")
                 include('libjFabricRuntime.so')
-        }
-        copy {
-                from("../../../lib")
-                into("./out/lib/lib")
-                include('jFabricRuntime.dll')
         }
         copy {
                 from("../CounterInterface/out/lib")

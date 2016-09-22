@@ -1,0 +1,4 @@
+# Once TestClient is compiled, go to 'out/lib' folder and run the following:
+# export LD_LIBRARY_PATH=lib/:/opt/microsoft/servicefabric/bin/Fabric/Fabric.Code/
+# java -jar -Djava.library.path=$LD_LIBRARY_PATH ActorCounterTest.jar
+

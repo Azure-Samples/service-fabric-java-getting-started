@@ -1,10 +1,10 @@
 include ':Interface'
 include ':Services:EchoServer:EchoServer1.0:EchoServerService'
 include ':Services:EchoServer:EchoServer2.0:EchoServerService'
-include ':Actors:ActorCounter:CounterActorService', ':ActorCounter:TestClient'
+include ':Actors:ActorCounter:CounterActorService', ':Actors:ActorCounter:TestClient'
 include ':Services:WatchDog:WatchdogService'
 include ':Services:Gateway:GatewayService'
-include ':Actors:VisualObjectActor:VisualObjectCommon', ':VisualObjectActor:VisualObjectActorService',':VisualObjectActor:VisualObjectWebService'
+include ':Actors:VisualObjectActor:VisualObjectCommon', ':Actors:VisualObjectActor:VisualObjectActorService',':Actors:VisualObjectActor:VisualObjectWebService'
 include ':VisualObjectCommon'
 
 
