@@ -1,7 +1,6 @@
 include ':Interface'
 include ':Services:EchoServer:EchoServer1.0:EchoServerService'
 include ':Services:EchoServer:EchoServer2.0:EchoServerService'
-include ':Services:EchoServer:EchoServer3.0:EchoServerService'
 include ':Actors:ActorCounter:CounterActorService', ':ActorCounter:TestClient'
 include ':Services:WatchDog:WatchdogService'
 include ':Services:Gateway:GatewayService'

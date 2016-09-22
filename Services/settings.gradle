@@ -1,7 +1,6 @@
 include ':Interface'
 include ':EchoServer:EchoServer1.0:EchoServerService'
 include ':EchoServer:EchoServer2.0:EchoServerService'
-include ':EchoServer:EchoServer3.0:EchoServerService'
 include ':WatchDog:WatchdogService'
 include ':Gateway:GatewayService'
 
