@@ -24,7 +24,7 @@ clean.doFirst {
 jar {
     manifest {
     attributes(
-        'Main-Class': 'echoserver.EchoServer',
+        'Main-Class': 'echoserver.EchoServerServiceHost',
         "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
     baseName "echoserver"
     destinationDir = file('./../EchoServerApplication2/EchoServerPkg/Code/')

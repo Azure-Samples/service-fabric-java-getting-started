@@ -23,7 +23,7 @@ clean.doFirst {
 jar {
     manifest {
     attributes(
-        'Main-Class': 'watchdog.WatchDog',
+        'Main-Class': 'watchdog.WatchDogServiceHost',
         "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
     baseName "watchdog"
     destinationDir = file('./../WatchdogApplication/WatchdogPkg/Code/')

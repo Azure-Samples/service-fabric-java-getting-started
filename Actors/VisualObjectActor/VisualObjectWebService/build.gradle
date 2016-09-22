@@ -33,7 +33,7 @@ clean.doFirst {
 jar {
     manifest {
     attributes(
-                'Main-Class': 'visualobjectwebservice.VisualObjectWebService',
+                'Main-Class': 'visualobjectwebservice.VisualObjectWebServiceHost',
                 "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
     baseName "visualobjectactor.webservice"
     destinationDir = file('../VisualObjectApplication/VisualObjects.WebServicePkg/Code')

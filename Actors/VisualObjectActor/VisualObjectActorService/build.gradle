@@ -33,7 +33,7 @@ clean.doFirst {
 jar {
     manifest {
     attributes(
-                'Main-Class': 'visualobjectactorservice.VisualObjectActorService',
+                'Main-Class': 'visualobjectactorservice.VisualObjectActorHost',
                 "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
     baseName "visualobjectactor.service"
     destinationDir = file('../VisualObjectApplication/VisualObjects.ActorServicePkg/Code')

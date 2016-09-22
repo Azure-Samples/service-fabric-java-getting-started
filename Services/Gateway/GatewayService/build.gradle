@@ -25,7 +25,7 @@ clean.doFirst {
 jar {
     manifest {
     attributes(
-                'Main-Class': 'gateway.Gateway',
+                'Main-Class': 'gateway.GatewayServiceHost',
                 "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
     baseName "gateway"
     destinationDir = file('./../GatewayApplication/GatewayPkg/Code')

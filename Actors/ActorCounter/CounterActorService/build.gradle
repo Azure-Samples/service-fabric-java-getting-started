@@ -33,7 +33,7 @@ clean.doFirst {
 jar {
     manifest {
     attributes(
-                'Main-Class': 'counteractor.CounterActor',
+                'Main-Class': 'counteractor.CounterActorHost',
                 "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
       baseName "actorcounter.counter"
     destinationDir = file('./../CounterActorApplication/CounterActorPkg/Code')
