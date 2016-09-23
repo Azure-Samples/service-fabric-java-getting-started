@@ -1,1 +1,1 @@
-include 'EchoServer1.0', 'EchoServer2.0'
+include 'EchoServer1.0:EchoServerService', 'EchoServer2.0:EchoServerService'
