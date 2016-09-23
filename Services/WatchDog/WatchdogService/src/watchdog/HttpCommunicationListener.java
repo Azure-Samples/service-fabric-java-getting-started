@@ -14,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +23,7 @@ import java.io.FileNotFoundException;
 
 import microsoft.servicefabric.services.communication.client.ServicePartitionClientImpl;
 import microsoft.servicefabric.services.communication.runtime.CommunicationListener;
+import microsoft.servicefabric.services.communication.client.ExceptionHandler;
 import microsoft.servicefabric.services.runtime.StatelessServiceContext;
 
 public class HttpCommunicationListener implements CommunicationListener {
@@ -33,7 +36,10 @@ public class HttpCommunicationListener implements CommunicationListener {
     private final int port;
 
     public HttpCommunicationListener(URI serviceName, StatelessServiceContext context, int port) {
-        this.client = new ServicePartitionClientImpl<HttpCommunicationClient>(new HttpCommunicationClientFactory(null), serviceName);
+        List<ExceptionHandler> exceptionHandlers = new ArrayList<ExceptionHandler>(){{
+            add(new CommunicationExceptionHandler());
+            }}; 
+        this.client = new ServicePartitionClientImpl<HttpCommunicationClient>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
         this.context = context;
         this.port = port;
     }
@@ -58,7 +64,6 @@ public class HttpCommunicationListener implements CommunicationListener {
                     OutputStream os = t.getResponseBody();
                     client.invokeWithRetryAsync((c) -> {
                         CompletableFuture<Boolean> b = new CompletableFuture<>();
-                        b.complete(true);
                         String address = c.endPointAddress();
                         int index = address.indexOf('/', 7);
                         if (index != -1) {
@@ -79,11 +84,13 @@ public class HttpCommunicationListener implements CommunicationListener {
                                 os.write(str1.getBytes("UTF-8"));
                             }
                             rd.close();
+                            b.complete(true);
                         } catch (FileNotFoundException ex) {
                             logger.log(Level.WARNING, null, ex);
+                            b.complete(true);
                         } catch (Exception ex) {
                             logger.log(Level.SEVERE, null, ex);
-                            throw new RuntimeException(ex);
+                            b.completeExceptionally(ex);
                         }
 
                         return b;

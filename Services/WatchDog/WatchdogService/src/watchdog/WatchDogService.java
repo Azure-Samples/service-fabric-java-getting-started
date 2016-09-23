@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 import microsoft.servicefabric.services.communication.client.ServicePartitionClientImpl;
 import microsoft.servicefabric.services.communication.runtime.ServiceInstanceListener;
+import microsoft.servicefabric.services.communication.client.ExceptionHandler;
 import microsoft.servicefabric.services.runtime.StatelessService;
 import system.fabric.ConfigurationPackage;
 import system.fabric.ConfigurationProperty;
@@ -99,8 +100,12 @@ public class WatchDogService extends StatelessService {
         return CompletableFuture.runAsync(() -> {
             try {
                 if (monitorOn && serviceType.equals("EchoServerType")) {
+                    List<ExceptionHandler> exceptionHandlers = new ArrayList<ExceptionHandler>(){{
+                        add(new CommunicationExceptionHandler());
+                        }};
+                        
                     ServicePartitionClientImpl<HttpCommunicationClient> client
-                            = new ServicePartitionClientImpl<>(new HttpCommunicationClientFactory(null), serviceName);
+                            = new ServicePartitionClientImpl<>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
                     Monitor mon = new Monitor();
                     while (true) {
                         try {
