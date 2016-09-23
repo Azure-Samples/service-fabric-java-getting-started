@@ -71,7 +71,7 @@ public class Monitor {
 
     private void SendHealthEvent(HealthState state, HttpCommunicationClient client) {
         HealthInformation info = new HealthInformation("Watchdog", "Property", state);
-        info.setDescription("Health reported by watchdog new");
+        info.setDescription("Health reported by WatchDog service");
         info.setRemoveWhenExpired(true);
         info.setTimeToLiveSeconds(Duration.ofMinutes(5));
         ServiceHealthReport report = new ServiceHealthReport(client.resolvedServicePartition().getServiceName(), info);
