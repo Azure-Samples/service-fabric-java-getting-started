@@ -12,9 +12,9 @@ import microsoft.servicefabric.services.communication.client.CommunicationClient
 
 public class HttpCommunicationClientFactory extends CommunicationClientFactoryBase<HttpCommunicationClient> {
 
-    protected HttpCommunicationClientFactory(ServicePartitionResolver servicePartitionResolver)
+    protected HttpCommunicationClientFactory(ServicePartitionResolver servicePartitionResolver, List<ExceptionHandler> exceptionHandlers)
     {
-        super(servicePartitionResolver, null, null);
+        super(servicePartitionResolver, exceptionHandlers, null);
     }
 
     @Override
