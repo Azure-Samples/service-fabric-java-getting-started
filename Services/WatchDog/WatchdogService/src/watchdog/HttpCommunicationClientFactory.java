@@ -7,8 +7,10 @@ package watchdog;
 
 import java.util.concurrent.CompletableFuture;
 
+import java.util.List;
 import microsoft.servicefabric.services.client.ServicePartitionResolver;
 import microsoft.servicefabric.services.communication.client.CommunicationClientFactoryBase;
+import microsoft.servicefabric.services.communication.client.ExceptionHandler;
 
 public class HttpCommunicationClientFactory extends CommunicationClientFactoryBase<HttpCommunicationClient> {
 
