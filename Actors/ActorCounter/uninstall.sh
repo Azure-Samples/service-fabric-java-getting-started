@@ -1,2 +1,2 @@
-azuresfcli servicefabric application remove fabric:/CounterActorApplication
-azuresfcli servicefabric application type unregister CounterActorApplicationType 1.0.0
+azure servicefabric application delete fabric:/CounterActorApplication
+azure servicefabric application type unregister CounterActorApplicationType 1.0.0

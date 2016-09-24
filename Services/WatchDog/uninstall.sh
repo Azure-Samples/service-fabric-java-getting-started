@@ -1,2 +1,2 @@
-azuresfcli servicefabric application remove fabric:/WatchdogApplication
-azuresfcli servicefabric application type unregister WatchdogApplicationType 1.0.0
+azure servicefabric application delete fabric:/WatchdogApplication
+azure servicefabric application type unregister WatchdogApplicationType 1.0.0
