@@ -23,6 +23,7 @@ import system.fabric.ConfigurationProperty;
 import system.fabric.ConfigurationSection;
 import system.fabric.ConfigurationSettings;
 import system.fabric.description.EndpointResourceDescription;
+import system.fabric.CancellationToken;
 
 public class WatchDogService extends StatelessService {
 
@@ -68,7 +69,7 @@ public class WatchDogService extends StatelessService {
     }; 
     
     @Override
-    protected CompletableFuture<?> runAsync() {
+    protected CompletableFuture<?> runAsync(CancellationToken token) {
         String monitorValue = getPropertyFromConfig(WatchDogService.monitorKey);
         final Boolean monitorOn = Boolean.valueOf(monitorValue);
         

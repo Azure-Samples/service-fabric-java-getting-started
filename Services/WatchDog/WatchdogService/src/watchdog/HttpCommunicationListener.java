@@ -25,6 +25,7 @@ import microsoft.servicefabric.services.communication.client.ServicePartitionCli
 import microsoft.servicefabric.services.communication.runtime.CommunicationListener;
 import microsoft.servicefabric.services.communication.client.ExceptionHandler;
 import microsoft.servicefabric.services.runtime.StatelessServiceContext;
+import system.fabric.CancellationToken;
 
 public class HttpCommunicationListener implements CommunicationListener {
 
@@ -114,14 +115,14 @@ public class HttpCommunicationListener implements CommunicationListener {
     }
 
     @Override
-    public CompletableFuture<String> openAsync() {
+    public CompletableFuture<String> openAsync(CancellationToken token) {
         this.start();
         String publishUri = String.format("http://%s:%d/", this.context.nodeContext().getIpAddressOrFQDN(), port);
         return CompletableFuture.completedFuture(publishUri);
     }
 
     @Override
-    public CompletableFuture<?> closeAsync() {
+    public CompletableFuture<?> closeAsync(CancellationToken token) {
         this.stop();
         return CompletableFuture.completedFuture(true);
     }

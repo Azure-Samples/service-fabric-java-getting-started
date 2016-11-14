@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import microsoft.servicefabric.services.communication.runtime.CommunicationListener;
 import microsoft.servicefabric.services.runtime.StatelessServiceContext;
+import system.fabric.CancellationToken;
 
 public class WebCommunicationListener implements CommunicationListener {
 
@@ -26,7 +27,7 @@ public class WebCommunicationListener implements CommunicationListener {
     }
 
     @Override
-    public CompletableFuture<String> openAsync() {
+    public CompletableFuture<String> openAsync(CancellationToken token) {
         this.webSocketApp = new WebSocketApp(this.visualObjectsBox, this.port);
         try {
             this.webSocketApp.start();
@@ -41,7 +42,7 @@ public class WebCommunicationListener implements CommunicationListener {
     }
 
     @Override
-    public CompletableFuture<?> closeAsync() {
+    public CompletableFuture<?> closeAsync(CancellationToken token) {
         try
         {
             if (this.webSocketApp != null)
