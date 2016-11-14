@@ -69,7 +69,7 @@ public class WatchDogService extends StatelessService {
     }; 
     
     @Override
-    protected CompletableFuture<?> runAsync(CancellationToken token) {
+    protected CompletableFuture<?> runAsync(CancellationToken cancellationToken) {
         String monitorValue = getPropertyFromConfig(WatchDogService.monitorKey);
         final Boolean monitorOn = Boolean.valueOf(monitorValue);
         
@@ -108,7 +108,7 @@ public class WatchDogService extends StatelessService {
                     ServicePartitionClientImpl<HttpCommunicationClient> client
                             = new ServicePartitionClientImpl<>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
                     Monitor mon = new Monitor();
-                    while (!token.isCancelled()) {
+                    while (!cancellationToken.isCancelled()) {
                         try {
                             client.invokeWithRetryAsync((c) -> {
                                 CompletableFuture<Boolean> b = new CompletableFuture<>();

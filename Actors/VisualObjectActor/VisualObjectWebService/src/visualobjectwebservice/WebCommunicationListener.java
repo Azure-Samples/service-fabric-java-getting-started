@@ -27,7 +27,7 @@ public class WebCommunicationListener implements CommunicationListener {
     }
 
     @Override
-    public CompletableFuture<String> openAsync(CancellationToken token) {
+    public CompletableFuture<String> openAsync(CancellationToken cancellationToken) {
         this.webSocketApp = new WebSocketApp(this.visualObjectsBox, this.port);
         try {
             this.webSocketApp.start();
@@ -42,7 +42,7 @@ public class WebCommunicationListener implements CommunicationListener {
     }
 
     @Override
-    public CompletableFuture<?> closeAsync(CancellationToken token) {
+    public CompletableFuture<?> closeAsync(CancellationToken cancellationToken) {
         try
         {
             if (this.webSocketApp != null)

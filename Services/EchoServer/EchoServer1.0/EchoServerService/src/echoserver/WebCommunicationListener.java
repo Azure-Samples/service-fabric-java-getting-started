@@ -30,7 +30,7 @@ class WebCommunicationListener implements CommunicationListener {
     }
 
     @Override
-    public CompletableFuture<String> openAsync(CancellationToken token) {
+    public CompletableFuture<String> openAsync(CancellationToken cancellationToken) {
         CompletableFuture<String> str = new CompletableFuture<>();
         String address = String.format("http://%s:%d/getMessage", this.context.nodeContext().getIpAddressOrFQDN(), this.port);
         str.complete(address);
@@ -46,7 +46,7 @@ class WebCommunicationListener implements CommunicationListener {
     }
 
     @Override
-    public CompletableFuture<?> closeAsync(CancellationToken token) {
+    public CompletableFuture<?> closeAsync(CancellationToken cancellationToken) {
         CompletableFuture<Boolean> task = new CompletableFuture<>();
         task.complete(Boolean.TRUE);
         if (server != null) {
