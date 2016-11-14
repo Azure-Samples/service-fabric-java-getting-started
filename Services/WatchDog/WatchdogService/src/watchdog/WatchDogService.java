@@ -108,7 +108,7 @@ public class WatchDogService extends StatelessService {
                     ServicePartitionClientImpl<HttpCommunicationClient> client
                             = new ServicePartitionClientImpl<>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
                     Monitor mon = new Monitor();
-                    while (true) {
+                    while (!token.isCancelled()) {
                         try {
                             client.invokeWithRetryAsync((c) -> {
                                 CompletableFuture<Boolean> b = new CompletableFuture<>();
