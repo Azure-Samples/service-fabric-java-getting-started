@@ -23,6 +23,7 @@ import system.fabric.ConfigurationProperty;
 import system.fabric.ConfigurationSection;
 import system.fabric.ConfigurationSettings;
 import system.fabric.description.EndpointResourceDescription;
+import system.fabric.CancellationToken;
 
 public class WatchDogService extends StatelessService {
 
@@ -68,7 +69,7 @@ public class WatchDogService extends StatelessService {
     }; 
     
     @Override
-    protected CompletableFuture<?> runAsync() {
+    protected CompletableFuture<?> runAsync(CancellationToken cancellationToken) {
         String monitorValue = getPropertyFromConfig(WatchDogService.monitorKey);
         final Boolean monitorOn = Boolean.valueOf(monitorValue);
         
@@ -107,7 +108,7 @@ public class WatchDogService extends StatelessService {
                     ServicePartitionClientImpl<HttpCommunicationClient> client
                             = new ServicePartitionClientImpl<>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
                     Monitor mon = new Monitor();
-                    while (true) {
+                    while (!cancellationToken.isCancelled()) {
                         try {
                             client.invokeWithRetryAsync((c) -> {
                                 CompletableFuture<Boolean> b = new CompletableFuture<>();

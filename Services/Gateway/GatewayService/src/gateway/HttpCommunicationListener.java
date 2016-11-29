@@ -22,6 +22,7 @@ import microsoft.servicefabric.actors.ActorId;
 import microsoft.servicefabric.actors.ActorProxyBase;
 import microsoft.servicefabric.services.communication.runtime.CommunicationListener;
 import system.fabric.ServiceContext;
+import system.fabric.CancellationToken;
 
 public class HttpCommunicationListener implements CommunicationListener {
 
@@ -74,14 +75,14 @@ public class HttpCommunicationListener implements CommunicationListener {
     }
 
     @Override
-    public CompletableFuture<String> openAsync() {
+    public CompletableFuture<String> openAsync(CancellationToken cancellationToken) {
         this.start();
         String publishUri = String.format("http://%s:%d/", this.serviceContext.nodeContext().getIpAddressOrFQDN(), port);
         return CompletableFuture.completedFuture(publishUri);
     }
 
     @Override
-    public CompletableFuture<?> closeAsync() {
+    public CompletableFuture<?> closeAsync(CancellationToken cancellationToken) {
         this.server.stop(0);
         return CompletableFuture.completedFuture(true);
     }
