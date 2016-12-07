@@ -54,7 +54,7 @@ The [Service Fabric documentation][service-fabric-docs] includes a rich set of t
 <!-- Links -->
 
 [service-fabric-programming-models]: https://azure.microsoft.com/en-us/documentation/articles/service-fabric-choose-framework/
-[app-upgrade-tutorial]: https://azure.microsoft.com/en-us/documentation/articles/service-fabric-application-upgrade-tutorial/
+[app-upgrade-tutorial]: https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-application-upgrade-tutorial-powershell
 [service-fabric-docs]: http://aka.ms/servicefabricdocs
 
 
