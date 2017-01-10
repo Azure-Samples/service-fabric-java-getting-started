@@ -18,7 +18,7 @@ public class CounterClient {
     static String actorName = "Actor1";
     static String actorCounterServiceName = "fabric:/CounterActorApplication/CounterActorService";
     public static void main(String[] args) throws URISyntaxException, InterruptedException, ExecutionException {
-        CounterActor actorProxy = ActorProxyBase.create(new ActorId(actorName), new URI(actorCounterServiceName), CounterActor.class);
+        CounterActor actorProxy = ActorProxyBase.create(CounterActor.class, new ActorId(actorName), new URI(actorCounterServiceName));
         int count = actorProxy.getCountAsync().get();
         System.out.println("From Actor:" + ActorExtensions.getActorId(actorProxy) + " " + count);
     }

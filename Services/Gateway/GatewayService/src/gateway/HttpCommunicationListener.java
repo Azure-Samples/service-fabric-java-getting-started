@@ -57,7 +57,7 @@ public class HttpCommunicationListener implements CommunicationListener {
                     if (index >= 0) {
                         str = str.substring(index + 1);
                     }
-                    CounterActor actorProxy = ActorProxyBase.create(new ActorId(str), serviceUri, CounterActor.class);
+                    CounterActor actorProxy = ActorProxyBase.create(CounterActor.class, new ActorId(str), serviceUri);
                     t.sendResponseHeaders(200, 0);
                     OutputStream os = t.getResponseBody();
                     String result = String.format("Actor:%s  ActorId:%s CounterValue:%d", str, ActorExtensions.getActorId(actorProxy).toString(), actorProxy.getCountAsync().get());
