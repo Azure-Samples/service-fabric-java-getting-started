@@ -51,7 +51,7 @@ public class VisualObjectsBoxImpl implements VisualObjectsBox {
     }
 
     private CompletableFuture<String> getObjectAsync(ActorId objectId) {
-        VisualObjectActor actorProxy = ActorProxyBase.create(objectId, this.serviceUri, VisualObjectActor.class);
+        VisualObjectActor actorProxy = ActorProxyBase.create(VisualObjectActor.class, objectId, this.serviceUri);
         try {
             CompletableFuture<String> result = actorProxy.getStateAsJsonAsync();
             return result;
