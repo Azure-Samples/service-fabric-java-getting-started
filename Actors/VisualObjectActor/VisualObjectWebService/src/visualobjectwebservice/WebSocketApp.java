@@ -74,7 +74,7 @@ public class WebSocketApp implements AutoCloseable {
                     os.write(buffer);
                     os.close();
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    // Ignore exception due to missing favicon.ico
                 }
             }
         });
