@@ -77,7 +77,7 @@ public class HttpCommunicationListener implements CommunicationListener {
     @Override
     public CompletableFuture<String> openAsync(CancellationToken cancellationToken) {
         this.start();
-        String publishUri = String.format("http://%s:%d/", this.serviceContext.nodeContext().getIpAddressOrFQDN(), port);
+        String publishUri = String.format("http://%s:%d/", this.serviceContext.getNodeContext().getIpAddressOrFQDN(), port);
         return CompletableFuture.completedFuture(publishUri);
     }
 

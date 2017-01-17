@@ -40,7 +40,7 @@ public class GatewayService extends StatelessService {
     
     private CommunicationListener createCommunicationListener(StatelessServiceContext context)
     {
-        ConfigurationPackage configPackage = this.context().codePackageActivationContext().getConfigurationPackageObject("Config");
+        ConfigurationPackage configPackage = this.getServiceContext().getCodePackageActivationContext().getConfigurationPackageObject("Config");
         ConfigurationSettings settings = configPackage.getSettings();
         HashMap<String, ConfigurationSection> sections = null;
         if (settings != null) {
@@ -59,7 +59,7 @@ public class GatewayService extends StatelessService {
             properties = serviceSection.getParameters();
         }
 
-        EndpointResourceDescription endpoint = this.context().codePackageActivationContext().getEndpoint(webEndpointName);
+        EndpointResourceDescription endpoint = this.getServiceContext().getCodePackageActivationContext().getEndpoint(webEndpointName);
         int port = endpoint.getPort();
         
         URI serviceName = null;
@@ -83,6 +83,6 @@ public class GatewayService extends StatelessService {
             throw new RuntimeException(errorMsg);
         }
         
-        return new HttpCommunicationListener(serviceName, port, this.context());
+        return new HttpCommunicationListener(serviceName, port, this.getServiceContext());
     }
 }

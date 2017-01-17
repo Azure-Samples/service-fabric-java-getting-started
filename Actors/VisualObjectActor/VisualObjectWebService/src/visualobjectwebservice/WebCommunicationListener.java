@@ -37,7 +37,7 @@ public class WebCommunicationListener implements CommunicationListener {
         }
 
         return CompletableFuture.supplyAsync(() -> {
-            return String.format("http://%s:%d", this.context.nodeContext().getIpAddressOrFQDN(), port);
+            return String.format("http://%s:%d", this.context.getNodeContext().getIpAddressOrFQDN(), port);
         });
     }
 

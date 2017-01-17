@@ -60,7 +60,7 @@ public class WatchDogService extends StatelessService {
             }
         }
         
-        EndpointResourceDescription endpoint = this.context().codePackageActivationContext().getEndpoint(webEndpointName);
+        EndpointResourceDescription endpoint = this.getServiceContext().getCodePackageActivationContext().getEndpoint(webEndpointName);
         int port = endpoint.getPort();
         
         List<ServiceInstanceListener> listeners = new ArrayList<ServiceInstanceListener>();
@@ -131,7 +131,7 @@ public class WatchDogService extends StatelessService {
     private String getPropertyFromConfig(String key)
     {
         String propertyValue = null;
-        ConfigurationPackage configPackage = this.context().codePackageActivationContext().getConfigurationPackageObject("Config");
+        ConfigurationPackage configPackage = this.getServiceContext().getCodePackageActivationContext().getConfigurationPackageObject("Config");
         ConfigurationSettings settings = configPackage.getSettings();
         HashMap<String, ConfigurationSection> sections = null;
         if (settings != null) {

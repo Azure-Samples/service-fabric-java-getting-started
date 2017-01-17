@@ -32,7 +32,7 @@ class WebCommunicationListener implements CommunicationListener {
     @Override
     public CompletableFuture<String> openAsync(CancellationToken cancellationToken) {
         CompletableFuture<String> str = new CompletableFuture<>();
-        String address = String.format("http://%s:%d/getMessage", this.context.nodeContext().getIpAddressOrFQDN(), this.port);
+        String address = String.format("http://%s:%d/getMessage", this.context.getNodeContext().getIpAddressOrFQDN(), this.port);
         str.complete(address);
         try {
             server = new HttpServer(port);
@@ -65,7 +65,7 @@ class WebCommunicationListener implements CommunicationListener {
     
     private int getPort()
     {
-        EndpointResourceDescription endpoint = this.context.codePackageActivationContext().getEndpoint(webEndpointName);
+        EndpointResourceDescription endpoint = this.context.getCodePackageActivationContext().getEndpoint(webEndpointName);
         return endpoint.getPort();
     }
 }
