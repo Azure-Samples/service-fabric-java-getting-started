@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import microsoft.servicefabric.services.communication.client.ServicePartitionClientImpl;
+import microsoft.servicefabric.services.communication.client.FabricServicePartitionClient;
 import microsoft.servicefabric.services.communication.runtime.ServiceInstanceListener;
 import microsoft.servicefabric.services.communication.client.ExceptionHandler;
 import microsoft.servicefabric.services.runtime.StatelessService;
@@ -105,8 +105,8 @@ public class WatchDogService extends StatelessService {
                         add(new CommunicationExceptionHandler());
                         }};
                         
-                    ServicePartitionClientImpl<HttpCommunicationClient> client
-                            = new ServicePartitionClientImpl<>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
+                    FabricServicePartitionClient<HttpCommunicationClient> client
+                            = new FabricServicePartitionClient<>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
                     Monitor mon = new Monitor();
                     while (!cancellationToken.isCancelled()) {
                         try {
