@@ -21,7 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.FileNotFoundException;
 
-import microsoft.servicefabric.services.communication.client.ServicePartitionClientImpl;
+import microsoft.servicefabric.services.communication.client.FabricServicePartitionClient;
 import microsoft.servicefabric.services.communication.runtime.CommunicationListener;
 import microsoft.servicefabric.services.communication.client.ExceptionHandler;
 import microsoft.servicefabric.services.runtime.StatelessServiceContext;
@@ -32,7 +32,7 @@ public class HttpCommunicationListener implements CommunicationListener {
     private static final Logger logger = Logger.getLogger(HttpCommunicationListener.class.getName());
 
     private com.sun.net.httpserver.HttpServer server;
-    private ServicePartitionClientImpl<HttpCommunicationClient> client;
+    private FabricServicePartitionClient<HttpCommunicationClient> client;
     private StatelessServiceContext context;
     private final int port;
 
@@ -40,7 +40,7 @@ public class HttpCommunicationListener implements CommunicationListener {
         List<ExceptionHandler> exceptionHandlers = new ArrayList<ExceptionHandler>(){{
             add(new CommunicationExceptionHandler());
             }}; 
-        this.client = new ServicePartitionClientImpl<HttpCommunicationClient>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
+        this.client = new FabricServicePartitionClient<HttpCommunicationClient>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
         this.context = context;
         this.port = port;
     }
