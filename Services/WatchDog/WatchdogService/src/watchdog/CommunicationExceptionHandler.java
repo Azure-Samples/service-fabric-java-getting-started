@@ -24,7 +24,7 @@ public class CommunicationExceptionHandler implements ExceptionHandler {
             ExceptionInformation exceptionInformation,
             OperationRetrySettings retrySettings) {        
 
-        Exception ex = exceptionInformation.exception();
+        Exception ex = exceptionInformation.getException();
         if (ex instanceof CompletionException) {
             Throwable t = ((CompletionException) ex).getCause();
             while (t instanceof RuntimeException)
@@ -32,8 +32,8 @@ public class CommunicationExceptionHandler implements ExceptionHandler {
 
             if (t instanceof ConnectException) {
                 ExceptionHandlingRetryResult exceptionHandlingRetryResult =
-                        new ExceptionHandlingRetryResult(exceptionInformation.exception(), false, retrySettings
-                                .maxRetryBackoffIntervalOnNonTransientErrors(), retrySettings.defaultMaxRetryCount());
+                        new ExceptionHandlingRetryResult(exceptionInformation.getException(), false, retrySettings
+                                .getMaxRetryBackoffIntervalOnNonTransientErrors(), retrySettings.getDefaultMaxRetryCount());
                 return exceptionHandlingRetryResult;
             }
         }

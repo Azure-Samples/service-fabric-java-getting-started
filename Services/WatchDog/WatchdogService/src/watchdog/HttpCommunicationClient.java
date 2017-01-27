@@ -30,7 +30,7 @@ public class HttpCommunicationClient implements CommunicationClient {
     }
 
     @Override
-    public ResolvedServicePartition resolvedServicePartition() {
+    public ResolvedServicePartition getResolvedServicePartition() {
         return this.rsp;
     }
 
@@ -41,12 +41,12 @@ public class HttpCommunicationClient implements CommunicationClient {
     }
 
     @Override
-    public String listenerName() {
+    public String getListenerName() {
         return this.listenerName;
     }
 
     @Override
-    public ResolvedServiceEndpoint endPoint() {
+    public ResolvedServiceEndpoint getEndPoint() {
         return this.rse;
     }
 
