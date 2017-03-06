@@ -48,8 +48,8 @@ For compilation the samples use gradle. This should be configured as part of the
 All the samples once compiled can be deployed immediately using the install.sh scripts provided along with the sample. These scripts underneath uses azurecli. Before running the scripts you need to first connect to the cluster using azurecli. 
 
 ## Compiling and Deploying the samples using Service Fabric Plugin for Eclipse
-The Service Fabric Plugin for Eclipse can be used to compile and deploy the samples, from Eclipse. To know more about this you can refer to our documentation about - 
-[Import and deploy github java samples using Service Fabric Eclipse plugin](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-eclipse#import-and-deploy-github-java-samples-using-service-fabric-eclipse-plugin)
+The Service Fabric Plugin for Eclipse can be used to compile and deploy the samples, from Eclipse. To know more about this you can refer to our documentation - 
+[Import and Deploy github java samples using Service Fabric Eclipse plugin][service-fabric-github-samples-with-eclipse].
 
 ## More information
 
@@ -60,6 +60,7 @@ The [Service Fabric documentation][service-fabric-docs] includes a rich set of t
 [service-fabric-programming-models]: https://azure.microsoft.com/en-us/documentation/articles/service-fabric-choose-framework/
 [app-upgrade-tutorial]: https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-application-upgrade-tutorial-powershell
 [service-fabric-docs]: http://aka.ms/servicefabricdocs
+[service-fabric-github-samples-with-eclipse]: https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-eclipse#import-and-deploy-github-java-samples-using-service-fabric-eclipse-plugin
 
 
 
