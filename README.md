@@ -1,7 +1,7 @@
 ---
 services: service-fabric
 platforms: java
-author: vturecek, raunakp
+author: vturecek, raunakp, saysa
 ---
 
 # Getting started with Service Fabric with Java
@@ -42,10 +42,14 @@ This stateless service sample demostrates writing a web frontend for your actor 
 This stateless service demostrates a watch dog application which is monitoring the EchoServer application. Once you have depployed EchoServer and WatchDog application, you would see that if EchoServer application goes down or for some reason the applications web endpoint is not reachable, an error health is reported by WatchDog for the EchoServer application in the Service Fabric health subsystem. Apart from this, this application also shows inter service communication by forwarding the web requests to Echo Server application. You can view this by going to browser @ http://localhost:12345/getMessage to see the output coming from EchoServer. 
 
 ## Compiling the samples
-For compiling the samples use gradle. This should be configured as part of the Service Fabric Java SDK installation.
+For compilation the samples use gradle. This should be configured as part of the Service Fabric Java SDK installation.
 
 ## Deploying the samples
 All the samples once compiled can be deployed immediately using the install.sh scripts provided along with the sample. These scripts underneath uses azurecli. Before running the scripts you need to first connect to the cluster using azurecli. 
+
+## Compiling and Deploying the samples using Service Fabric Plugin for Eclipse
+The Service Fabric Plugin for Eclipse can be used to compile and deploy the samples, from Eclipse. To know more about this you can refer to our documentation about - 
+[Import and deploy github java samples using Service Fabric Eclipse plugin](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-eclipse#import-and-deploy-github-java-samples-using-service-fabric-eclipse-plugin)
 
 ## More information
 

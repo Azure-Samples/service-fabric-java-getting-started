@@ -1,8 +1,8 @@
 {
  "ClusterConnectParameters": 
  {
-    "ConnectionIPOrURL": "lin313azr.eastus.cloudapp.azure.com",
-    "ConnectionPort": "19080",
+    "ConnectionIPOrURL": "",
+    "ConnectionPort": "",
     "ClientKey": "",
     "ClientCert": ""
  }
