@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-appplicationCount=`azure servicefabric application show "fabric:/aApplication" | grep fabric:/aApplication | wc -l`
+appplicationCount=`azure servicefabric application show "fabric:/VisualObjectApplication" | grep fabric:/VisualObjectApplication | wc -l`
 if [[ "$appplicationCount" -eq "0" ]];then
     echo "Deploying Application"
     /bin/bash Scripts/install.sh
