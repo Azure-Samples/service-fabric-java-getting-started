@@ -1,2 +1,2 @@
-azure servicefabric application delete fabric:/jenkinsSF
-azure servicefabric application type unregister JenkinsSFAppType 1.0
+azure servicefabric application delete fabric:/JenkinsSF
+azure servicefabric application type unregister JenkinsSFApplicationType 1.0

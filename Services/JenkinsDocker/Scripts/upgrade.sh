@@ -11,7 +11,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 version=$(sed -e "s/xmlns/ignore/" JenkinsSF/ApplicationManifest.xml | xmllint --xpath "string(//ApplicationManifest/@ApplicationTypeVersion)" -)
-eval azure servicefabric application upgrade start --application-name fabric:/jenkinsSF --target-application-type-version ${version} --rolling-upgrade-mode Monitored > /dev/null 2>&1
+eval azure servicefabric application upgrade start --application-name fabric:/JenkinsSF --target-application-type-version ${version} --rolling-upgrade-mode Monitored > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
     exit 1

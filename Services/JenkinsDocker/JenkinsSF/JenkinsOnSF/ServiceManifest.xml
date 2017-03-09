@@ -7,7 +7,7 @@
   <CodePackage Name="Code" Version="1.0">
     <EntryPoint>
       <ContainerHost>
-        <ImageName>sayantancs/sf_jenkins:v1</ImageName>
+        <ImageName>servicefabric-microsoft.azurecr.io/jenkins:v1</ImageName>
         <Commands></Commands>
       </ContainerHost>
     </EntryPoint>
