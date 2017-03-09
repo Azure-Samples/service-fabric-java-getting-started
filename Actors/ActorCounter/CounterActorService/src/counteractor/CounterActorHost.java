@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import microsoft.servicefabric.actors.ActorRuntime;
-import microsoft.servicefabric.actors.ActorServiceImpl;
+import microsoft.servicefabric.actors.FabricActorService;
 
 public class CounterActorHost {
 
@@ -19,7 +19,7 @@ public class CounterActorHost {
     public static void main(String[] args) throws Exception {
 
         try {
-            ActorRuntime.registerActorAsync(CounterActorImpl.class, (context, actorType) -> new ActorServiceImpl(context, actorType, ()-> new CounterActorImpl()), Duration.ofSeconds(10));
+            ActorRuntime.registerActorAsync(CounterActorImpl.class, (context, actorType) -> new FabricActorService(context, actorType, (a,b)-> new CounterActorImpl(a,b)), Duration.ofSeconds(10));
             Thread.sleep(Long.MAX_VALUE);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Exception in registration: {0}", e.toString());

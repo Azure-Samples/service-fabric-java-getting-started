@@ -74,7 +74,7 @@ public class Monitor {
         info.setDescription("Health reported by WatchDog service");
         info.setRemoveWhenExpired(true);
         info.setTimeToLiveSeconds(Duration.ofMinutes(5));
-        ServiceHealthReport report = new ServiceHealthReport(client.resolvedServicePartition().getServiceName(), info);
+        ServiceHealthReport report = new ServiceHealthReport(client.getResolvedServicePartition().getServiceName(), info);
         this.healthClient.reportHealth(report);
     }
 }

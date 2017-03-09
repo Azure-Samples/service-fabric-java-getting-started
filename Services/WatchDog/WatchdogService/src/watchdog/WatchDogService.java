@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import microsoft.servicefabric.services.communication.client.ServicePartitionClientImpl;
+import microsoft.servicefabric.services.communication.client.FabricServicePartitionClient;
 import microsoft.servicefabric.services.communication.runtime.ServiceInstanceListener;
 import microsoft.servicefabric.services.communication.client.ExceptionHandler;
 import microsoft.servicefabric.services.runtime.StatelessService;
@@ -60,7 +60,7 @@ public class WatchDogService extends StatelessService {
             }
         }
         
-        EndpointResourceDescription endpoint = this.context().codePackageActivationContext().getEndpoint(webEndpointName);
+        EndpointResourceDescription endpoint = this.getServiceContext().getCodePackageActivationContext().getEndpoint(webEndpointName);
         int port = endpoint.getPort();
         
         List<ServiceInstanceListener> listeners = new ArrayList<ServiceInstanceListener>();
@@ -105,8 +105,8 @@ public class WatchDogService extends StatelessService {
                         add(new CommunicationExceptionHandler());
                         }};
                         
-                    ServicePartitionClientImpl<HttpCommunicationClient> client
-                            = new ServicePartitionClientImpl<>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
+                    FabricServicePartitionClient<HttpCommunicationClient> client
+                            = new FabricServicePartitionClient<>(new HttpCommunicationClientFactory(null, exceptionHandlers), serviceName);
                     Monitor mon = new Monitor();
                     while (!cancellationToken.isCancelled()) {
                         try {
@@ -131,7 +131,7 @@ public class WatchDogService extends StatelessService {
     private String getPropertyFromConfig(String key)
     {
         String propertyValue = null;
-        ConfigurationPackage configPackage = this.context().codePackageActivationContext().getConfigurationPackageObject("Config");
+        ConfigurationPackage configPackage = this.getServiceContext().getCodePackageActivationContext().getConfigurationPackageObject("Config");
         ConfigurationSettings settings = configPackage.getSettings();
         HashMap<String, ConfigurationSection> sections = null;
         if (settings != null) {

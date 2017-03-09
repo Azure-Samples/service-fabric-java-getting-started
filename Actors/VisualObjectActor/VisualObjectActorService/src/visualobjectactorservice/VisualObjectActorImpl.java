@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 import microsoft.servicefabric.actors.ActorServiceAttribute;
 import microsoft.servicefabric.actors.ActorTimer;
-import microsoft.servicefabric.actors.ReliableActor;
+import microsoft.servicefabric.actors.FabricActor;
 import microsoft.servicefabric.actors.StatePersistence;
 import microsoft.servicefabric.actors.StatePersistenceAttribute;
 import system.fabric.ConfigurationPackage;
@@ -21,13 +21,19 @@ import system.fabric.ConfigurationSection;
 import system.fabric.ConfigurationSettings;
 import visualobjectcommon.VisualObject;
 import visualobjectcommon.VisualObjectActor;
+import microsoft.servicefabric.actors.ActorId;
+import microsoft.servicefabric.actors.FabricActorService;
 
 @ActorServiceAttribute(name = "VisualObjects.ActorService")
 @StatePersistenceAttribute(statePersistence = StatePersistence.Persisted)
-public class VisualObjectActorImpl extends ReliableActor implements VisualObjectActor {
+public class VisualObjectActorImpl extends FabricActor implements VisualObjectActor {
 
     private String jsonString;
     private final String stateName = "visualObjects";    
+
+    public VisualObjectActorImpl(FabricActorService actorService, ActorId actorId){
+        super(actorService, actorId);
+    }
     
     @Override
     public CompletableFuture<String> getStateAsJsonAsync() {
@@ -42,8 +48,8 @@ public class VisualObjectActorImpl extends ReliableActor implements VisualObject
                 .getOrAddStateAsync(
                         stateName,
                         VisualObject.createRandom(
-                                this.getActorId().toString(),
-                                new Random(this.getActorId().toString().hashCode())))
+                                this.getId().toString(),
+                                new Random(this.getId().toString().hashCode())))
                 .thenApply((r) -> {
                     this.jsonString = r.toJson();
                     this.registerTimer(
@@ -57,7 +63,7 @@ public class VisualObjectActorImpl extends ReliableActor implements VisualObject
     }
 
     private long getTimerIntervalFromSettings() {
-        ConfigurationPackage configPackage = this.actorService().context().codePackageActivationContext().getConfigurationPackageObject("Config");
+        ConfigurationPackage configPackage = this.getActorService().getServiceContext().getCodePackageActivationContext().getConfigurationPackageObject("Config");
         ConfigurationSettings settings = null;
         if (configPackage != null)
             settings = configPackage.getSettings();

@@ -9,9 +9,11 @@ import counterinterface.CounterActor;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 import microsoft.servicefabric.actors.ActorServiceAttribute;
-import microsoft.servicefabric.actors.ReliableActor;
+import microsoft.servicefabric.actors.FabricActor;
 import microsoft.servicefabric.actors.StatePersistence;
 import microsoft.servicefabric.actors.StatePersistenceAttribute;
+import microsoft.servicefabric.actors.ActorId;
+import microsoft.servicefabric.actors.FabricActorService;
 
 /**
 StatePersistenceAttribute can be of 3 types - persisted, volatile, null. 
@@ -20,7 +22,10 @@ We can use based on our requirement.
 
 @ActorServiceAttribute(name = "CounterActorService")
 @StatePersistenceAttribute(statePersistence = StatePersistence.Volatile) 
-public class CounterActorImpl extends ReliableActor implements CounterActor {
+public class CounterActorImpl extends FabricActor implements CounterActor {
+    public CounterActorImpl(FabricActorService actorService, ActorId actorId) {
+        super(actorService, actorId);
+    }
 
     @Override
     protected CompletableFuture<?> onActivateAsync() {

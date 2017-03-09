@@ -28,7 +28,7 @@ public class VisualObjectWebService extends StatelessService {
 
     @Override
     protected List<ServiceInstanceListener> createServiceInstanceListeners() {
-        ConfigurationPackage configPackage = this.context().codePackageActivationContext().getConfigurationPackageObject("Config");
+        ConfigurationPackage configPackage = this.getServiceContext().getCodePackageActivationContext().getConfigurationPackageObject("Config");
         ConfigurationSettings settings = configPackage.getSettings();
         HashMap<String, ConfigurationSection> sections = null;
         if (settings != null) {
@@ -48,10 +48,10 @@ public class VisualObjectWebService extends StatelessService {
         String serviceName = null;
         int numObjects = 0;
         
-        EndpointResourceDescription endpoint = this.context().codePackageActivationContext().getEndpoint("WebEndpoint");
+        EndpointResourceDescription endpoint = this.getServiceContext().getCodePackageActivationContext().getEndpoint("WebEndpoint");
         int port = endpoint.getPort();
         
-        String appName = this.context().codePackageActivationContext().getApplicationName();
+        String appName = this.getServiceContext().getCodePackageActivationContext().getApplicationName();
         if (serviceSection != null) {
             serviceName = properties.get("ServiceName").getValue(); 
             String count = properties.get("ObjectCount").getValue(); 
