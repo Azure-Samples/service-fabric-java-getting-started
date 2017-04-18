@@ -1,4 +1,14 @@
-azure servicefabric application package copy --application-package-path VisualObjectApplication --image-store-connection-string fabric:ImageStore
+#!/bin/bash
+set -x
+
+callerPath=${0}
+if [[ "$callerPath" =~ "Scripts" ]];then
+ appPkg="VisualObjectApplication"
+else
+ appPkg="../VisualObjectApplication"
+fi
+
+azure servicefabric application package copy --application-package-path $appPkg --image-store-connection-string fabric:ImageStore
 azure servicefabric application type register --application-type-build-path VisualObjectApplication
 if [ $# -eq 0 ]
   then

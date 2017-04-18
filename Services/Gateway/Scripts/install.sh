@@ -1,4 +1,14 @@
-azure servicefabric application package copy GatewayApplication fabric:ImageStore
+#!/bin/bash
+set -x
+
+callerPath=${0}
+if [[ "$callerPath" =~ "Scripts" ]];then
+ appPkg="GatewayApplication"
+else
+ appPkg="../GatewayApplication"
+fi
+
+azure servicefabric application package copy $appPkg fabric:ImageStore
 azure servicefabric application type register GatewayApplication
 
 if [ $# -eq 0 ]

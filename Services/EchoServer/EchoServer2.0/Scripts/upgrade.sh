@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+
 azure servicefabric application package copy EchoServerApplication fabric:ImageStore > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Application copy failed."

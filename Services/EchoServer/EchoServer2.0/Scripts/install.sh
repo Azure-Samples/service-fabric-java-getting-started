@@ -1,4 +1,14 @@
-azure servicefabric application package copy --application-package-path EchoServerApplication2 --image-store-connection-string fabric:ImageStore
+#!/bin/bash
+set -x
+
+callerPath=${0}
+if [[ "$callerPath" =~ "Scripts" ]];then
+ appPkg="EchoServerApplication2"
+else
+ appPkg="../EchoServerApplication2"
+fi
+
+azure servicefabric application package copy --application-package-path $appPkg --image-store-connection-string fabric:ImageStore
 azure servicefabric application type register --application-type-build-path EchoServerApplication2
 
 # Used below command to upgrade from version 1.0 to version 2.0

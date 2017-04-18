@@ -1,4 +1,14 @@
-azure servicefabric application package copy WatchdogApplication fabric:ImageStore
+#!/bin/bash
+set -x
+
+callerPath=${0}
+if [[ "$callerPath" =~ "Scripts" ]];then
+ appPkg="WatchdogApplication"
+else
+ appPkg="../WatchdogApplication"
+fi
+
+azure servicefabric application package copy $appPkg fabric:ImageStore
 azure servicefabric application type register WatchdogApplication
 
 if [ $# -eq 0 ]
