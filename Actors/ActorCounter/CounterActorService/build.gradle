@@ -49,7 +49,7 @@ task copyDeps<< {
     copy {
         from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
         into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-        include('libjFabricRuntime.so')
+        include('*.so')
     }
     copy {
         from("../CounterInterface/out/lib")
