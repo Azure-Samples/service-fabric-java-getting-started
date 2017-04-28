@@ -1,12 +1,10 @@
 #!/bin/bash
 set -x
 
-callerPath=${0}
-if [[ "$callerPath" =~ "Scripts" ]];then
- appPkg="JenkinsSF"
-else
- appPkg="../JenkinsSF"
-fi
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+pushd $(pwd)
+cd $DIR
+appPkg="$DIR/../JenkinsSF"
 
 azure servicefabric application package copy $appPkg fabric:ImageStore > /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -24,3 +22,5 @@ if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
     exit 1
 fi
+
+popd

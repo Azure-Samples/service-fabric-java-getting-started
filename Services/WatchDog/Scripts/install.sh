@@ -1,12 +1,10 @@
 #!/bin/bash
 set -x
 
-callerPath=${0}
-if [[ "$callerPath" =~ "Scripts" ]];then
- appPkg="WatchdogApplication"
-else
- appPkg="../WatchdogApplication"
-fi
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+pushd $(pwd)
+cd $DIR
+appPkg="$DIR/../WatchdogApplication"
 
 azure servicefabric application package copy $appPkg fabric:ImageStore
 azure servicefabric application type register WatchdogApplication
@@ -24,3 +22,5 @@ if [ $# -eq 0 ]
     echo "Multinode env, proceed with default instanceCount of -1"
     azure servicefabric application create --application-name fabric:/WatchdogApplication  --application-type-name WatchdogApplicationType --application-type-version 1.0.0 --application-parameter "[{\"key\":\"InstanceCount\",\"value\":\"-1\"}]"
 fi
+
+popd
