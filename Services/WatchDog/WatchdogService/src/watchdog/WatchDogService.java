@@ -116,10 +116,11 @@ public class WatchDogService extends StatelessService {
                                 b.complete(Boolean.TRUE);
                                 return b;
                             }).get();
-                            Thread.sleep(healthCheckAfter);
                         } catch (Exception ex) {
                             logger.log(Level.SEVERE, null, ex);
                         }
+                        
+                        Thread.sleep(healthCheckAfter);
                     }
                 }
             } catch (Exception ex) {
