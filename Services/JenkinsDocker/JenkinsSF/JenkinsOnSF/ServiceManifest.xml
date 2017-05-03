@@ -7,7 +7,7 @@
   <CodePackage Name="Code" Version="1.0">
     <EntryPoint>
       <ContainerHost>
-        <ImageName>raunakpandya/jenkins:v1</ImageName>
+        <ImageName>sayantancs/plain_image:latest</ImageName>
         <Commands></Commands>
       </ContainerHost>
     </EntryPoint>
