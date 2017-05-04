@@ -11,11 +11,11 @@
     <Policies>
       <ContainerHostPolicies CodePackageRef="Code">
         <PortBinding ContainerPort="8080" EndpointRef="Endpoint1" />
-	<RepositoryCredentials PasswordEncrypted="false" Password="****" AccountName="test"/> 
-       <LogConfig Driver="etwlogs" > 
+	<RepositoryCredentials PasswordEncrypted="true" Password="Sayantan123" AccountName="sayantancs"/> 
+       <!--LogConfig Driver="etwlogs" > 
           <DriverOption Name="test" Value="vale"/> 
-          </LogConfig> 
-        <Volume Source="/tmp/docker_dump/may03" Destination="/var/jenkins_home" IsReadOnly="false" /> 
+          </LogConfig--> 
+        <Volume Source="/tmp/docker_dump/may04" Destination="/var/jenkins_home" IsReadOnly="false" /> 
         <!--Volume Source="d:\myfolder" Destination="c:\testmountlocation2" IsReadOnly="true" /--> 
       </ContainerHostPolicies>
     </Policies>
