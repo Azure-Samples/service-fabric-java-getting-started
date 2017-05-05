@@ -11,8 +11,8 @@
     <Policies>
       <ContainerHostPolicies CodePackageRef="Code">
         <PortBinding ContainerPort="8081" EndpointRef="Endpoint1" />
-	<RepositoryCredentials PasswordEncrypted="true" Password="Sayantan123" AccountName="sayantancs"/> 
-        <Volume Source="/tmp/docker_dump/may04" Destination="/var/jenkins_home" IsReadOnly="false" /> 
+	<!--RepositoryCredentials PasswordEncrypted="true" Password="Sayantan123" AccountName="sayantancs"/--> 
+        <Volume Source="/tmp/docker_dump/may05" Destination="/var/jenkins_home" IsReadOnly="false" /> 
       </ContainerHostPolicies>
     </Policies>
   </ServiceManifestImport>
