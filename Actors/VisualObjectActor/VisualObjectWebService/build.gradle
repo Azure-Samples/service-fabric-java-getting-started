@@ -49,7 +49,7 @@ task copyDeps<< {
     copy {
         from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
         into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
-        include('*.so')
+        include('libj*.so')
     }
     copy {
         from("./../VisualObjectCommon/out/lib")

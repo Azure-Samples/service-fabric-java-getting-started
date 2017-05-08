@@ -42,7 +42,7 @@ task copyDeps <<{
     copy {
         from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
         into("./../GatewayApplication/GatewayPkg/Code/lib")
-        include('*.so')
+        include('libj*.so')
     }
     copy {
         from("../../../Actors/ActorCounter/CounterInterface/out/lib")

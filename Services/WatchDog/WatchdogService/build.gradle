@@ -39,7 +39,7 @@ task copyDeps<< {
     copy {
         from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
         into("./../WatchdogApplication/WatchdogPkg/Code/lib")
-        include('*.so')
+        include('libj*.so')
     }
 }
 
