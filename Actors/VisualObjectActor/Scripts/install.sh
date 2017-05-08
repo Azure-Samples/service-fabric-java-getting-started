@@ -1,4 +1,10 @@
-azure servicefabric application package copy --application-package-path VisualObjectApplication --image-store-connection-string fabric:ImageStore
+#!/bin/bash
+set -x
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+appPkg="$DIR/../VisualObjectApplication"
+
+azure servicefabric application package copy --application-package-path $appPkg --image-store-connection-string fabric:ImageStore
 azure servicefabric application type register --application-type-build-path VisualObjectApplication
 if [ $# -eq 0 ]
   then

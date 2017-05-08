@@ -1,4 +1,10 @@
-azure servicefabric application package copy GatewayApplication fabric:ImageStore
+#!/bin/bash
+set -x
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+appPkg="$DIR/../GatewayApplication"
+
+azure servicefabric application package copy $appPkg fabric:ImageStore
 azure servicefabric application type register GatewayApplication
 
 if [ $# -eq 0 ]
