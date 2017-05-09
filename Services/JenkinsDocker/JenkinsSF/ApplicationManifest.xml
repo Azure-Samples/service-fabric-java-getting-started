@@ -10,9 +10,9 @@
     <ServiceManifestRef ServiceManifestName="JenkinsOnSF" ServiceManifestVersion="1.0"/>
     <Policies>
       <ContainerHostPolicies CodePackageRef="Code">
-        <PortBinding ContainerPort="8081" EndpointRef="Endpoint1" />
-	<!--RepositoryCredentials PasswordEncrypted="true" Password="Sayantan123" AccountName="sayantancs"/--> 
-        <Volume Source="/tmp/docker_dump/may05" Destination="/var/jenkins_home" IsReadOnly="false" /> 
+        <PortBinding ContainerPort="8080" EndpointRef="Endpoint1" />
+        <!--Volume Source="/tmp/docker_dump/may09/" Destination="/var/jenkins_home" IsReadOnly="false" /--> 
+        <Volume Source="/mnt/docker_dump/jenkins_home/" Destination="/var/jenkins_home" IsReadOnly="false" /> 
       </ContainerHostPolicies>
     </Policies>
   </ServiceManifestImport>

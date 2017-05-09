@@ -5,9 +5,15 @@
     <StatelessServiceType ServiceTypeName="JenkinsOnSFServiceType"  UseImplicitHost="true"/>
   </ServiceTypes>
   <CodePackage Name="Code" Version="1.0">
+   <SetupEntryPoint>
+      <ExeHost>
+        <Program>setupentrypoint.sh</Program>
+        <WorkingFolder>CodePackage</WorkingFolder>
+      </ExeHost>
+    </SetupEntryPoint>
     <EntryPoint>
       <ContainerHost>
-        <ImageName>sayantancs/jenkins:v0</ImageName>
+        <ImageName>sayantancs/jenkins_tp9:v2</ImageName>
         <Commands></Commands>
       </ContainerHost>
     </EntryPoint>
@@ -16,7 +22,7 @@
   </CodePackage>
   <Resources>
     <Endpoints>
-      <Endpoint Name="Endpoint1" UriScheme="http" Port="8081" />
+      <Endpoint Name="Endpoint1" UriScheme="http" Port="20001" />
     </Endpoints>
   </Resources>
 </ServiceManifest>
