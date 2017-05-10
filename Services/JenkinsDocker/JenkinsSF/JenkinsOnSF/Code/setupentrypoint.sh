@@ -4,7 +4,7 @@ group=jenkins
 uid=1003
 gid=1003
 sudo groupadd -g ${gid} ${group}
-sudo useradd  -u ${uid} -g ${gid} 
+sudo useradd  -u ${uid} -g ${gid} ${user}
 sudo mkdir -p /mnt/docker_dump/jenkins_home
 sudo chown -R jenkins:jenkins /mnt/docker_dump/jenkins_home
 

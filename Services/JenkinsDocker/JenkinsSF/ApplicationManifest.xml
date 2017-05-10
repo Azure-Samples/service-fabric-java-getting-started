@@ -8,7 +8,9 @@
   <Description>Jenkins on Service Fabric</Description>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="JenkinsOnSF" ServiceManifestVersion="1.0"/>
+    <ConfigOverrides />
     <Policies>
+      <RunAsPolicy CodePackageRef="Code" UserRef="root" EntryPointType="Setup" />
       <ContainerHostPolicies CodePackageRef="Code">
         <PortBinding ContainerPort="8080" EndpointRef="Endpoint1" />
         <!--Volume Source="/tmp/docker_dump/may09/" Destination="/var/jenkins_home" IsReadOnly="false" /--> 
@@ -16,6 +18,11 @@
       </ContainerHostPolicies>
     </Policies>
   </ServiceManifestImport>
+  <Principals>
+      <Users>
+         <User Name="root" AccountType="LocalSystem" />
+      </Users>
+   </Principals>
   <ServiceTemplates>
       <StatelessService ServiceTypeName="JenkinsOnSFServiceType" InstanceCount="1">
         <SingletonPartition />
