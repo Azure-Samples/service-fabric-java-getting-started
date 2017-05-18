@@ -17,18 +17,19 @@ if (( isJenkinsPresent == 0 && isAlreadyMounted == 0 ));then
     sudo mkdir -p ${mountPoint}
     sudo chown -R jenkins:jenkins ${mountPoint}
     echo "mount location created: ${mountPoint}"
-    sudo apt-get install -qqy cifs-utils
-    sudo mount -t cifs //teststoragess1.file.core.windows.net/testshare ${mountPoint} -o vers=3.0,username=teststoragess1,password=d/miV/ZWWYTAOwD+HWBdHCPbx258FlLL2BM3SFuZEcHM2RQjObcN+mKV4bIgdy3Fo3L5b8zCUipw4dgu2XRzNQ==,dir_mode=0777,file_mode=0777,uid=${uid},gid=${gid}
+#    sudo apt-get install -qqy cifs-utils
+#    sudo mount -t cifs //teststoragess1.file.core.windows.net/testshare ${mountPoint} -o vers=3.0,username=teststoragess1,password=d/miV/ZWWYTAOwD+HWBdHCPbx258FlLL2BM3SFuZEcHM2RQjObcN+mKV4bIgdy3Fo3L5b8zCUipw4dgu2XRzNQ==,dir_mode=0777,file_mode=0777,uid=${uid},gid=${gid}
     echo "mounted the remote storage at: ${mountPoint}"
 elif (( isAlreadyMounted == 0 ));then 
     echo "Jenkins user present. Need to mount."   
     uid=`id -u jenkins`
     gid=`id -g jenkins`
+    echo "Jenkins user is present with uid=${uid} and gid=${gid}."
     sudo mkdir -p ${mountPoint}
     sudo chown -R jenkins:jenkins ${mountPoint}
     echo "mount location created: ${mountPoint}"
-    sudo apt-get install -qqy cifs-utils
-    sudo mount -t cifs //teststoragess1.file.core.windows.net/testshare ${mountPoint} -o vers=3.0,username=teststoragess1,password=d/miV/ZWWYTAOwD+HWBdHCPbx258FlLL2BM3SFuZEcHM2RQjObcN+mKV4bIgdy3Fo3L5b8zCUipw4dgu2XRzNQ==,dir_mode=0777,file_mode=0777,uid=${uid},gid=${gid}
+#    sudo apt-get install -qqy cifs-utils
+#    sudo mount -t cifs //teststoragess1.file.core.windows.net/testshare ${mountPoint} -o vers=3.0,username=teststoragess1,password=d/miV/ZWWYTAOwD+HWBdHCPbx258FlLL2BM3SFuZEcHM2RQjObcN+mKV4bIgdy3Fo3L5b8zCUipw4dgu2XRzNQ==,dir_mode=0777,file_mode=0777,uid=${uid},gid=${gid}
     echo "mounted the remote storage at: ${mountPoint}"    
 else 
     echo "already set-up, do nothing"
