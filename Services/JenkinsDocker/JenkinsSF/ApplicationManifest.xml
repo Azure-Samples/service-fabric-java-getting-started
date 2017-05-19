@@ -13,7 +13,6 @@
       <RunAsPolicy CodePackageRef="Code" UserRef="root" EntryPointType="Setup" />
       <ContainerHostPolicies CodePackageRef="Code">
         <PortBinding ContainerPort="8080" EndpointRef="Endpoint1" />
-        <!--Volume Source="/tmp/docker_dump/may09/" Destination="/var/jenkins_home" IsReadOnly="false" /--> 
         <Volume Source="/mnt/docker_dump/jenkins_home/" Destination="/var/jenkins_home" IsReadOnly="false" /> 
       </ContainerHostPolicies>
     </Policies>
