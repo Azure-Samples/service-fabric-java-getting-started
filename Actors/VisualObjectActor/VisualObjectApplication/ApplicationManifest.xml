@@ -27,4 +27,8 @@
          </StatefulService>
     </Service>
    </DefaultServices>    
+<Certificates>
+      <SecretsCertificate X509FindType="FindByThumbprint" X509FindValue="B4DF6BA914A958A7F0552DD1432665F2816E8600" />
+   </Certificates>
+
 </ApplicationManifest>
