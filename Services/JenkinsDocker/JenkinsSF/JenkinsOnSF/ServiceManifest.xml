@@ -5,9 +5,15 @@
     <StatelessServiceType ServiceTypeName="JenkinsOnSFServiceType"  UseImplicitHost="true"/>
   </ServiceTypes>
   <CodePackage Name="Code" Version="1.0">
+   <SetupEntryPoint>
+      <ExeHost>
+        <Program>setupentrypoint.sh</Program>
+        <WorkingFolder>CodePackage</WorkingFolder>
+      </ExeHost>
+    </SetupEntryPoint>
     <EntryPoint>
       <ContainerHost>
-        <ImageName>raunakpandya/jenkins:v1</ImageName>
+        <ImageName>sayantancs/jenkins:v2</ImageName>
         <Commands></Commands>
       </ContainerHost>
     </EntryPoint>
