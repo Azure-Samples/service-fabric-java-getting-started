@@ -40,7 +40,7 @@ task copyDeps<< {
     copy {
         from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
         into("./../EchoServerApplication2/EchoServerPkg/Code/lib")
-        include('libjFabricRuntime.so')
+        include('libj*.so')
     }
 }
 
