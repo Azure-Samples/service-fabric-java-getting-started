@@ -1,4 +1,10 @@
-azure servicefabric application package copy WatchdogApplication fabric:ImageStore
+#!/bin/bash
+set -x
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+appPkg="$DIR/../WatchdogApplication"
+
+azure servicefabric application package copy $appPkg fabric:ImageStore
 azure servicefabric application type register WatchdogApplication
 
 if [ $# -eq 0 ]
