@@ -21,7 +21,7 @@ We can use based on our requirement.
 */
 
 @ActorServiceAttribute(name = "CounterActorService")
-@StatePersistenceAttribute(statePersistence = StatePersistence.Volatile) 
+@StatePersistenceAttribute(statePersistence = StatePersistence.Persisted) 
 public class CounterActorImpl extends FabricActor implements CounterActor {
     public CounterActorImpl(FabricActorService actorService, ActorId actorId) {
         super(actorService, actorId);
