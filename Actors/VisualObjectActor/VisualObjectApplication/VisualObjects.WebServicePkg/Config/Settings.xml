@@ -10,7 +10,7 @@
   <Section Name="TransportSettings">
      <Parameter Name="MaxMessageSize" Value="10000000" />
      <Parameter Name="SecurityCredentialsType" Value="X509_2" />
-     <Parameter Name="CertificatePath" Value="/var/lib/waagent/B4DF6BA914A958A7F0552DD1432665F2816E8600.crt" />
+     <Parameter Name="CertificatePath" Value="" />
      <Parameter Name="CertificateProtectionLevel" Value="EncryptandSign" />
      <Parameter Name="CertificateRemoteThumbprints" Value="B4DF6BA914A958A7F0552DD1432665F2816E8600" />
  </Section>
