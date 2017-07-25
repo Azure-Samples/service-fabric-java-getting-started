@@ -17,8 +17,8 @@
 <Section Name="VisualObjects.ActorServiceTransportSettings">
      <Parameter Name="MaxMessageSize" Value="10000000" />
      <Parameter Name="SecurityCredentialsType" Value="X509_2" />
-     <Parameter Name="CertificatePath" Value="" />
+     <Parameter Name="CertificatePath" Value="/var/lib/sfcerts/E4CDA2FB3A37740FEA3EE23C4EB3190B19915923.crt" />
      <Parameter Name="CertificateProtectionLevel" Value="EncryptandSign" />
-     <Parameter Name="CertificateRemoteThumbprints" Value="B4DF6BA914A958A7F0552DD1432665F2816E8600" />
+     <Parameter Name="CertificateRemoteThumbprints" Value="E4CDA2FB3A37740FEA3EE23C4EB3190B19915923" />
  </Section>
 </Settings>
