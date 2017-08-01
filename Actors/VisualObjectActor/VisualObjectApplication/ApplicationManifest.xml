@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ApplicationManifest
-    ApplicationTypeName="VisualObjectsApplicationType"
+    ApplicationTypeName="VisualObjectsApplicationType1"
     ApplicationTypeVersion="1.0.0"
     xmlns="http://schemas.microsoft.com/2011/01/fabric"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -14,7 +14,13 @@
     </Parameters>
     <ServiceManifestImport>     
 		<ServiceManifestRef ServiceManifestName="VisualObjects.ActorServicePkg" ServiceManifestVersion="1.0.0" />
+		<Policies>      <RunAsPolicy CodePackageRef="Code" UserRef="testadm" EntryPointType="Main" />  </Policies>
     </ServiceManifestImport>
+    <Principals>
+      <Users>
+         <User Name="testadm" AccountType="LocalUser" />
+      </Users>
+   </Principals>
     <DefaultServices>
       <Service Name="VisualObjects.WebService">
          <StatelessService ServiceTypeName="VisualObjects.WebServiceType" InstanceCount="[InstanceCount]">
