@@ -22,7 +22,13 @@ commandLine '/bin/bash','Scripts/upgrade.sh'
 }
 task undeploy(type:Exec){
 commandLine '/bin/bash','Scripts/uninstall.sh'
-} 
+}
+task install-sfctl(type:Exec) {
+  commandLine '/bin/bash','Scripts/install-sfctl.sh'
+}
+task remove-sfctl(type:Exec){
+  commandLine '/bin/bash','Scripts/uninstall-sfctl.sh'
+}
 
 task clusterconnect(type:Exec){
  if ( project.hasProperty("publishProfile") ) {
@@ -43,5 +49,11 @@ task launch()<<{
         else if (Eval.me(config)=='upgrade'){
         tasks.upgrade.exec()
         }
+  else if (Eval.me(config)=='install-sfctl') {
+    tasks.install-sfctl.exec()
+  }
+  else if (Eval.me(config)=='uninstall-sfctl') {
+    tasks.remove-sfctl.exec()
+  }
 }
 defaultTasks 'clean', 'jar', 'copyDeps'

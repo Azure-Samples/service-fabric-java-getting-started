@@ -15,34 +15,52 @@ task runDefaultTasks {
   } 
   
 task deploy(type:Exec) {
-commandLine '/bin/bash','Scripts/deploy.sh'
+  commandLine '/bin/bash','Scripts/deploy.sh'
 }
 task upgrade(type:Exec) {
-commandLine '/bin/bash','Scripts/upgrade.sh'
+  commandLine '/bin/bash','Scripts/upgrade.sh'
 }
 task undeploy(type:Exec){
-commandLine '/bin/bash','Scripts/uninstall.sh'
-} 
+  commandLine '/bin/bash','Scripts/uninstall.sh'
+}
+task install-sfctl(type:Exec) {
+  commandLine '/bin/bash','Scripts/install-sfctl.sh'
+}
+task upgrade-sfctl(type:Exec) {
+  commandLine '/bin/bash','Scripts/upgrade-sfctl.sh'
+}
+task remove-sfctl(type:Exec){
+  commandLine '/bin/bash','Scripts/uninstall-sfctl.sh'
+}
 
 task clusterconnect(type:Exec){
- if ( project.hasProperty("publishProfile") ) {
+  if ( project.hasProperty("publishProfile") ) {
     commandLine '/bin/bash','Scripts/connect.sh',Eval.me(publishProfile)
    } else {
      commandLine '/bin/bash', 'Scripts/connect.sh'
     }
 }
+
 task launch()<<{
-  
-        if ( Eval.me(config)=='deploy' ) {
-         tasks.deploy.exec()
-        }
-        else if ( Eval.me(config)=='redeploy' ) {
-          tasks.undeploy.exec()
-          tasks.deploy.exec()
-        }
-        else if (Eval.me(config)=='upgrade'){
-        tasks.upgrade.exec()
-        }
+  if ( Eval.me(config)=='deploy' ) {
+    tasks.deploy.exec()
+  }
+  else if ( Eval.me(config)=='redeploy' ) {
+    tasks.undeploy.exec()
+    tasks.deploy.exec()
+  }
+  else if (Eval.me(config)=='upgrade') {
+    tasks.upgrade.exec()
+  }
+  else if (Eval.me(config)=='install-sfctl') {
+    tasks.install-sfctl.exec()
+  }
+  else if (Eval.me(config)=='upgrade-sfctl') {
+    tasks.upgrade-sfctl.exec()
+  }
+  else if (Eval.me(config)=='uninstall-sfctl') {
+    tasks.remove-sfctl.exec()
+  }
 }
 
 defaultTasks 'clean', 'jar', 'copyDeps'
