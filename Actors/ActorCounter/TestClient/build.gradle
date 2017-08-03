@@ -47,7 +47,7 @@ jar
 {
 	manifest {
         def mpath = configurations.compile.collect {'lib/'+it.getName()}.join (' ')
-       mpath = mpath + ' ' + configurations.azuresf.collect {'lib/'+it.getName()}.join (' ')
+        mpath = mpath + ' ' + configurations.azuresf.collect {'lib/'+it.getName()}.join (' ')
     attributes(
 		'Main-Class': 'counterclient.CounterClient',
 		"Class-Path": mpath)
