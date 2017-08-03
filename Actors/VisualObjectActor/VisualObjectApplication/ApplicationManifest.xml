@@ -7,6 +7,7 @@
     <Description>VisualObjects Application</Description>
     <ServiceManifestImport>
         <ServiceManifestRef ServiceManifestName="VisualObjects.WebServicePkg" ServiceManifestVersion="1.0.0" />
+		<Policies>      <RunAsPolicy CodePackageRef="Code" UserRef="testadm" EntryPointType="Main" />  </Policies>
       <ConfigOverrides />
     </ServiceManifestImport>
     <Parameters>
