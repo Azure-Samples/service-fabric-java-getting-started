@@ -19,22 +19,47 @@ sourceSets {
    }
 }
 
-dependencies {
-    compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
-    compile project(':VisualObjectCommon')
+clean.doFirst {
+    delete "${projectDir}/lib"
+    delete "${projectDir}/out"
+    delete "${projectDir}/../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/visualobjectactor.service.jar"
+    delete "${projectDir}/../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/lib"
 }
 
-clean.doFirst {
-    delete "${projectDir}/out"
-  delete "${projectDir}/../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/visualobjectactor.service.jar"
-  delete "${projectDir}/../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/lib"
+repositories {
+        mavenCentral()
 }
+
+configurations {
+    azuresf
+}
+
+dependencies {
+    compile project(':VisualObjectCommon')
+    azuresf ('com.microsoft.azure.servicefabric:actors-preview:1.0.0') 
+    compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+task explodeDeps(type: Copy, dependsOn:configurations.azuresf) { task ->
+    configurations.azuresf.filter { it.toString().contains("native-preview") }.each{
+        from zipTree(it)
+    }
+    configurations.azuresf.filter { !it.toString().contains("native-preview") }.each {
+        from it
+    }
+    into "lib"
+    include "libj*.so", "*.jar"
+}
+
+compileJava.dependsOn(explodeDeps)
 
 jar {
     manifest {
+      def mpath = configurations.compile.collect {'lib/'+it.getName()}.join (' ')
+        mpath = mpath + ' ' + configurations.azuresf.collect {'lib/'+it.getName()}.join (' ')
     attributes(
                 'Main-Class': 'visualobjectactorservice.VisualObjectActorHost',
-                "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
+                "Class-Path": mpath)
     baseName "visualobjectactor.service"
     destinationDir = file('../VisualObjectApplication/VisualObjects.ActorServicePkg/Code')
     }
@@ -42,14 +67,9 @@ jar {
 
 task copyDeps<< {
     copy {
-        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
+        from("lib/")
         into("../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/lib")
-        include('*.jar')
-    }
-    copy {
-        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
-        into("../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/lib")
-        include('libj*.so')
+        include('*')
     }
     copy {
         from("./../VisualObjectCommon/out/lib")
