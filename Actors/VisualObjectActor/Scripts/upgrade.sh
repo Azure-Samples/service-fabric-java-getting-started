@@ -19,7 +19,7 @@ fi
 # Check parameters to see if InstanceCount was previously specified
 params=$(sfctl application info --application-id VisualObjectApplication --query "parameters[].[key, value][]")
 version=$(sed -e "s/xmlns/ignore/" $appPkg/ApplicationManifest.xml | xmllint --xpath "string(//ApplicationManifest/@ApplicationTypeVersion)" -)
-if [[ $params =~ "InstanceCount"]]; then
+if [[ $params =~ "InstanceCount" ]]; then
     sfctl application upgrade --app-id VisualObjectApplication --app-version ${version} --parameters "{\"InstanceCount\":\"-1\"}"
 else
     sfctl application upgrade --app-id VisualObjectApplication --app-version ${version} --parameters ""
