@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-appplicationCount=`sfctl application list | grep fabric:/CounterActorApplication | wc -l`
+appplicationCount=`sfctl application list | grep CounterActorApplication | wc -l`
 if [[ "$appplicationCount" -eq "0" ]];then
     echo "Deploying Application"
     /bin/bash Scripts/install.sh

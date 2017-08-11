@@ -2,7 +2,5 @@
 This sample project uses Paper.js to render a set of objects. Each object is represented by an Actor, where the location and trajectory of each is calculated on the server side by the Actor representing the object. 
  
  ## How to run Visual Objects
-This sample creates multiple Visual actor which keeps on moving in the plane.
-To build the application execute gradle. You can install the built application
-by running `install.sh` or `install-sfctl.sh`. If using the Azure Service
-Fabric command line, use `install-sfctl.sh`. Once the application has started, go to [http://localhost:8507/index.html](http://localhost:8507/index.html). Try opening it in multiple browser windows or on multiple machines to see how the server-side calculation produces the same result on every screen.
+This sample creates multiple Visual actor which keeps on moving in the plane. 
+To run the sample, execute gradle and install application by executing install.sh. Once the application has started, go to [http://localhost:8507/index.html](http://localhost:8507/index.html). Try opening it in multiple browser windows or on multiple machines to see how the server-side calculation produces the same result on every screen.
