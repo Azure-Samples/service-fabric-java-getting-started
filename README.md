@@ -22,7 +22,7 @@ Actor counter provides an example of a very simple actor which implements a coun
 This sample project uses Paper.js to render a set of objects. Each object is represented by an Actor, where the location and trajectory of each is calculated on the server side by the Actor representing the object. 
 
 This sample creates multiple Visual actor which keeps on moving in the plane. 
-To run the sample, execute gradle and install application by executing install.sh, or install-sfctl.sh (if using the Azure Service Fabric command line). Once the application has started, go to http://localhost:8507/index.html. Try opening it in multiple browser windows or on multiple machines to see how the server side calculation produces the same result on every screen.
+To run the sample, execute gradle and install application by executing install.sh. Once the application has started, go to http://localhost:8507/index.html. Try opening it in multiple browser windows or on multiple machines to see how the server side calculation produces the same result on every screen.
 
 It also provides a clear demonstration of how Service Fabric performs rolling upgrades as the behavior of the shapes can be seen to gradually change as the upgrade proceeds across the upgrade domains in the cluster. To see how to perform a rolling upgrade using the Visual Objects sample, see the [application upgrade tutorial][app-upgrade-tutorial].
 
@@ -31,7 +31,7 @@ It also provides a clear demonstration of how Service Fabric performs rolling up
 
 This stateless service sample demostrates a simple web server. Go to EchoServer1.0 and after deploying application, go to browser and type in http://localhost:8508/getMessage, you should see '[version 1.0]Hello World !!!'. If you type in http://localhost:8508/getMessage/?Raunak, you should see '[version 1.0]Hello Raunak!!!'
 
-EchoServer2.0 sample demostrates upgrade of stateless service. Both the applications are almost same except for the version number returned back upon web query. Run the install.sh (or install-sfctl.sh) to upgrade from version 1.0 to version 2.0. After upgrading the application, go to the browser and type in http://localhost:8508/getMessage, to see '[version 2.0]Hello World !!!'. If you type in http://localhost:8508/getMessage/?Raunak, you should see '[version 2.0]Hello Raunak!!!'
+EchoServer2.0 sample demostrates upgrade of stateless service. Both the applications are almost same except for the version number returned back upon web query. Run the install.sh to upgrade from version 1.0 to version 2.0. After upgrading the application, go to the browser and type in http://localhost:8508/getMessage, to see '[version 2.0]Hello World !!!'. If you type in http://localhost:8508/getMessage/?Raunak, you should see '[version 2.0]Hello Raunak!!!'
 
 ### Gateway
 
@@ -45,7 +45,9 @@ This stateless service demostrates a watch dog application which is monitoring t
 For compiling the samples use gradle. This should be configured as part of the Service Fabric Java SDK installation.
 
 ## Deploying the samples
-All the samples once compiled can be deployed immediately using the install.sh scripts located inside Scripts folder of every sample. These scripts will use the Service Fabric X-Plat CLI. If using the latest Azure Service Fabric python CLI (sfctl), then the corresponding `install-sfctl.sh` and `uninstall-sfctl.sh` scripts can be used instead. Before running the scripts you need to first connect to the cluster.
+All the samples once compiled can be deployed immediately using the install.sh scripts located inside Scripts folder of every sample. These scripts require the Service Fabric CLI, or
+`sfctl`. Before running any of the install or deploy scripts, be sure to
+install `sfctl` and select the target cluster.
 
 ## Compiling and Deploying the samples using Service Fabric Plugin for Eclipse
 
