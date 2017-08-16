@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-appplicationCount=`azure servicefabric application show "fabric:/WatchdogApplication" | grep fabric:/WatchdogApplication | wc -l`
+appplicationCount=`sfctl application list | grep WatchdogApplication | wc -l`
 if [[ "$appplicationCount" -eq "0" ]];then
     echo "Deploying Application"
     /bin/bash Scripts/install.sh
