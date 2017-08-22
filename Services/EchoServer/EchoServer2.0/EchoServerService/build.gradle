@@ -27,7 +27,7 @@ configurations {
 }
 
 dependencies {
-    azuresf ('com.microsoft.azure.servicefabric:actors-preview:1.0.0') 
+    azuresf ('com.microsoft.servicefabric:sf-actors-preview:0.10.0') 
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 
