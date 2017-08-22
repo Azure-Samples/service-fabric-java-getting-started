@@ -4,18 +4,20 @@ set -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 appPkg="$DIR/../CounterActorApplication"
 
-azure servicefabric application package copy $appPkg fabric:ImageStore > /dev/null 2>&1
+sfctl application upload --path $appPkg --show-progress
 if [ $? -ne 0 ]; then
     echo "Application copy failed."
     exit 1
 fi
-azure servicefabric application type register CounterActorApplication > /dev/null 2>&1
+
+sfctl application provision --application-type-build-path CounterActorApplication
 if [ $? -ne 0 ]; then
     echo "Application type registration failed."
     exit 1
 fi
+
 version=$(sed -e "s/xmlns/ignore/" $appPkg/ApplicationManifest.xml | xmllint --xpath "string(//ApplicationManifest/@ApplicationTypeVersion)" -)
-eval azure servicefabric application upgrade start --application-name fabric:/CounterActorApplication --target-application-type-version ${version} --rolling-upgrade-mode Monitored > /dev/null 2>&1
+eval sfctl application upgrade --app-id CounterActorApplication --app-version ${version} --parameters "" --mode "Monitored"
 if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
     exit 1

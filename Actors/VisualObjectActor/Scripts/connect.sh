@@ -46,7 +46,7 @@ fi
 
 if [ "$clientkey" != "0" ] && [ "$clientkey" != "" ] && [ "$clientCert" != "0" ] && [ "$clientCert" != "" ]; then
     protocol='https'
-    certArgs="--client-key-path $clientkey --client-cert-path $clientCert --strict-ssl-false --reject-unauthorized-false"
+    certArgs="--key $clientkey --cert $clientCert --no-verify"
 fi
 
 url=${protocol}://${ip}:${port}
@@ -81,10 +81,9 @@ if [[ $url == *"localhost"* ]]; then
 fi
 
 echo "Connecting to $url"
-azure servicefabric cluster connect "$url" $certArgs > /dev/null
+sfctl cluster select --endpoint $url $certArgs
 if [ $? != 0 ]; then
     echo "Something went wrong while connecting to cluster."
     exit 1
 fi
 echo "Connected to:$url"
-azure servicefabric cluster show

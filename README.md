@@ -45,7 +45,9 @@ This stateless service demostrates a watch dog application which is monitoring t
 For compiling the samples use gradle. This should be configured as part of the Service Fabric Java SDK installation.
 
 ## Deploying the samples
-All the samples once compiled can be deployed immediately using the install.sh scripts located inside Scripts folder of every sample. These scripts underneath uses azurecli. Before running the scripts you need to first connect to the cluster using azurecli. 
+All the samples once compiled can be deployed immediately using the install.sh scripts located inside Scripts folder of every sample. These scripts require the Service Fabric CLI, or
+`sfctl`. Before running any of the install or deploy scripts, be sure to
+install `sfctl` and select the target cluster.
 
 ## Compiling and Deploying the samples using Service Fabric Plugin for Eclipse
 
