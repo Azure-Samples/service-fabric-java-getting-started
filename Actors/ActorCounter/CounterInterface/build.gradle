@@ -11,13 +11,36 @@ sourceSets {
    }
 }
 
-dependencies {
-    compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
+clean.doFirst {
+  delete "${projectDir}/lib"    
+  delete "${projectDir}/out"
 }
 
-clean.doFirst {
-    delete "${projectDir}/out"
+repositories {
+        mavenCentral()
 }
+
+configurations {
+    azuresf
+}
+
+dependencies {
+    azuresf ('com.microsoft.servicefabric:sf-actors-preview:0.10.0')  
+    compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+task explodeDeps(type: Copy, dependsOn:configurations.azuresf) { task ->
+    configurations.azuresf.filter { it.toString().contains("native-preview") }.each{
+        from zipTree(it)
+    }
+    configurations.azuresf.filter { !it.toString().contains("native-preview") }.each {
+         from it
+    }
+    into "lib"
+    include "libj*.so", "*.jar"
+}
+
+compileJava.dependsOn(explodeDeps)
 
 jar {
     baseName "actorcounter.counterinterface"

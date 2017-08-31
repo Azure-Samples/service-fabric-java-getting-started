@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-appplicationCount=`azure servicefabric application show "fabric:/JenkinsSF" | grep fabric:/JenkinsSF | wc -l`
+appplicationCount=`sfctl application list | grep JenkinsSF | wc -l`
 if [[ "$appplicationCount" -eq "0" ]];then
     echo "Deploying Application"
     /bin/bash Scripts/install.sh

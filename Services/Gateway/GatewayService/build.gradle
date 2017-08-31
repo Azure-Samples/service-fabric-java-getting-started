@@ -11,22 +11,47 @@ sourceSets {
    }
 }
 
-dependencies {
-    compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
-    compile project(':Interface')
-}
-
 clean.doFirst {
+    delete "${projectDir}/lib"
     delete "${projectDir}/out"
     delete "${projectDir}/../GatewayApplication/GatewayPkg/Code/gateway.jar"
     delete "${projectDir}/../GatewayApplication/GatewayPkg/Code/lib"
 }
 
+repositories {
+        mavenCentral()
+}
+
+configurations {
+    azuresf
+}
+
+dependencies {
+    compile project(':Interface')
+    azuresf ('com.microsoft.servicefabric:sf-actors-preview:0.10.0') 
+    compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+task explodeDeps(type: Copy, dependsOn:configurations.azuresf) { task ->
+    configurations.azuresf.filter { it.toString().contains("native-preview") }.each{
+        from zipTree(it)
+    }
+    configurations.azuresf.filter { !it.toString().contains("native-preview") }.each {
+        from it
+    }
+    into "lib"
+    include "libj*.so", "*.jar"
+}
+
+compileJava.dependsOn(explodeDeps)
+
 jar {
     manifest {
+        def mpath = configurations.compile.collect {'lib/'+it.getName()}.join (' ')
+        mpath = mpath + ' ' + configurations.azuresf.collect {'lib/'+it.getName()}.join (' ')
     attributes(
                 'Main-Class': 'gateway.GatewayServiceHost',
-                "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
+                "Class-Path": mpath)
     baseName "gateway"
     destinationDir = file('./../GatewayApplication/GatewayPkg/Code')
 }
@@ -35,14 +60,9 @@ jar {
 
 task copyDeps <<{
     copy {
-        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
+        from("lib/")
         into("./../GatewayApplication/GatewayPkg/Code/lib")
-        include('*.jar')
-    }
-    copy {
-        from("/opt/microsoft/sdk/servicefabric/java/packages/lib")
-        into("./../GatewayApplication/GatewayPkg/Code/lib")
-        include('libj*.so')
+        include('*')
     }
     copy {
         from("../../../Actors/ActorCounter/CounterInterface/out/lib")
