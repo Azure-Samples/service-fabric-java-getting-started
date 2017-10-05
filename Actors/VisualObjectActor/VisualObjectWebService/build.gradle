@@ -48,7 +48,7 @@ task explodeDeps(type: Copy, dependsOn:configurations.azuresf) { task ->
         from it
     }
     into "lib"
-    include "lib*.so", "*.jar"
+    include "libj*.so", "*.jar"
 }
 
 compileJava.dependsOn(explodeDeps)
