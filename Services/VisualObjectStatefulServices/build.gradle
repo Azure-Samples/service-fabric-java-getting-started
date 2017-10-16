@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+allprojects {
+  task hello << { task -> println "I'm $task.project.name" }
+}
+subprojects {
+    apply plugin: 'java'
+} 
+task runDefaultTasks {
+    subprojects.each { subproject ->subproject.defaultTasks.each {
+                    dependsOn subproject.path+":"+it
+            }
+    }
+  } 
+  
+task deploy(type:Exec) {
+commandLine '/bin/bash','Scripts/deploy.sh'
+}
+task upgrade(type:Exec) {
+commandLine '/bin/bash','Scripts/upgrade.sh'
+}
+task undeploy(type:Exec){
+commandLine '/bin/bash','Scripts/uninstall.sh'
+} 
+
+task clusterconnect(type:Exec){
+ if ( project.hasProperty("publishProfile") ) {
+    commandLine '/bin/bash','Scripts/connect.sh',Eval.me(publishProfile)
+   } else {
+     commandLine '/bin/bash', 'Scripts/connect.sh'
+    }
+}
+task launch()<<{
+  
+        if ( Eval.me(config)=='deploy' ) {
+         tasks.deploy.exec()
+        }
+        else if ( Eval.me(config)=='redeploy' ) {
+          tasks.undeploy.exec()
+          tasks.deploy.exec()
+        }
+        else if (Eval.me(config)=='upgrade'){
+        tasks.upgrade.exec()
+        }
+}
+defaultTasks 'clean', 'jar', 'copyDeps'
