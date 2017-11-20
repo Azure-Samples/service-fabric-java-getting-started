@@ -4,6 +4,12 @@ set -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 appPkg="$DIR/../CounterActorApplication"
 
+if [[ "$#" != "0" ]];then
+        version="$1"
+else
+        version="1.0.0"
+fi
+
 sfctl application upload --path $appPkg --show-progress
 if [ $? -ne 0 ]; then
     echo "Application copy failed."
@@ -17,7 +23,7 @@ if [ $? -ne 0 ]; then
 fi
 
 version=$(sed -e "s/xmlns/ignore/" $appPkg/ApplicationManifest.xml | xmllint --xpath "string(//ApplicationManifest/@ApplicationTypeVersion)" -)
-eval sfctl application upgrade --app-id CounterActorApplication --app-version ${version} --parameters "" --mode "Monitored"
+eval sfctl application upgrade --app-id fabric:/CounterActorApplication --app-version ${version} --parameters [] --mode "Monitored"
 if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
     exit 1
