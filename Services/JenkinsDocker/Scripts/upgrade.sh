@@ -22,7 +22,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-version=$(sed -e "s/xmlns/ignore/" $appPkg/ApplicationManifest.xml | xmllint --xpath "string(//ApplicationManifest/@ApplicationTypeVersion)" -)
 eval sfctl application upgrade --app-id fabric:/JenkinsSF --app-version ${version} --parameters [] --mode "Monitored"
 if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
