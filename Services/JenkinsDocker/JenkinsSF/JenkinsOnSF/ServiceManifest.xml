@@ -13,7 +13,7 @@
     </SetupEntryPoint>
     <EntryPoint>
       <ContainerHost>
-        <ImageName>sayantancs/jenkins:v8</ImageName>
+        <ImageName>sayantancs/jenkins:v9</ImageName>
         <Commands></Commands>
       </ContainerHost>
     </EntryPoint>
