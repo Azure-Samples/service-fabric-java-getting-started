@@ -13,7 +13,7 @@
     </SetupEntryPoint>
     <EntryPoint>
       <ContainerHost>
-        <ImageName>sayantancs/jenkins:v9</ImageName>
+        <ImageName>rapatchi/jenkins:v9</ImageName>
         <Commands></Commands>
       </ContainerHost>
     </EntryPoint>
