@@ -13,8 +13,8 @@ sourceSets {
 clean.doFirst{
     delete "${projectDir}/lib"
     delete "${projectDir}/out"
-    delete "${projectDir}/../EchoServerApplication/EchoServerPkg/Code/lib"
-    delete "${projectDir}/../EchoServerApplication/EchoServerPkg/Code/echoserver.jar"
+    delete "${projectDir}/../WatchdogApplication/WatchdogPkg/Code/lib"
+    delete "${projectDir}/../WatchdogApplication/WatchdogPkg/Code/watchdog.jar"
 }
 
 repositories {
