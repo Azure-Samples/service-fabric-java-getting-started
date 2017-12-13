@@ -24,7 +24,7 @@ public class CommunicationExceptionHandler implements ExceptionHandler {
             ExceptionInformation exceptionInformation,
             OperationRetrySettings retrySettings) {        
 
-        Exception ex = exceptionInformation.getException();
+        Throwable ex = exceptionInformation.getException();
         if (ex instanceof CompletionException) {
             Throwable t = ((CompletionException) ex).getCause();
             while (t instanceof RuntimeException)
