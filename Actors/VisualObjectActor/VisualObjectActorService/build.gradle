@@ -19,47 +19,22 @@ sourceSets {
    }
 }
 
-clean.doFirst {
-    delete "${projectDir}/lib"
-    delete "${projectDir}/out"
-    delete "${projectDir}/../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/visualobjectactor.service.jar"
-    delete "${projectDir}/../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/lib"
-}
-
-repositories {
-        mavenCentral()
-}
-
-configurations {
-    azuresf
-}
-
 dependencies {
+    compile fileTree(dir: '/home/vishnu/depot/lib', include: ['*.jar'])
     compile project(':VisualObjectCommon')
-    azuresf ('com.microsoft.servicefabric:sf-actors:1.0.0-preview2') 
-    compile fileTree(dir: 'lib', include: '*.jar')
 }
 
-task explodeDeps(type: Copy, dependsOn:configurations.azuresf) { task ->
-    configurations.azuresf.filter { it.toString().contains("native") }.each{
-        from zipTree(it)
-    }
-    configurations.azuresf.filter { !it.toString().contains("native") }.each {
-        from it
-    }
-    into "lib"
-    include "libj*.so", "*.jar"
+clean.doFirst {
+    delete "${projectDir}/out"
+  delete "${projectDir}/../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/visualobjectactor.service.jar"
+  delete "${projectDir}/../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/lib"
 }
-
-compileJava.dependsOn(explodeDeps)
 
 jar {
     manifest {
-      def mpath = configurations.compile.collect {'lib/'+it.getName()}.join (' ')
-        mpath = mpath + ' ' + configurations.azuresf.collect {'lib/'+it.getName()}.join (' ')
     attributes(
                 'Main-Class': 'visualobjectactorservice.VisualObjectActorHost',
-                "Class-Path": mpath)
+                "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
     baseName "visualobjectactor.service"
     destinationDir = file('../VisualObjectApplication/VisualObjects.ActorServicePkg/Code')
     }
@@ -67,9 +42,14 @@ jar {
 
 task copyDeps<< {
     copy {
-        from("lib/")
+        from("/home/vishnu/depot/lib")
         into("../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/lib")
-        include('*')
+        include('*.jar')
+    }
+    copy {
+        from("/home/vishnu/depot/lib")
+        into("../VisualObjectApplication/VisualObjects.ActorServicePkg/Code/lib")
+        include('libj*.so')
     }
     copy {
         from("./../VisualObjectCommon/out/lib")

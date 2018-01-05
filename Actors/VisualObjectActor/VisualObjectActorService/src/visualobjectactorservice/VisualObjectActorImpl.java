@@ -10,19 +10,22 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
-import microsoft.servicefabric.actors.ActorServiceAttribute;
-import microsoft.servicefabric.actors.ActorTimer;
-import microsoft.servicefabric.actors.FabricActor;
-import microsoft.servicefabric.actors.StatePersistence;
-import microsoft.servicefabric.actors.StatePersistenceAttribute;
+import microsoft.servicefabric.actors.runtime.ActorServiceAttribute;
+import microsoft.servicefabric.actors.runtime.ActorTimer;
+import microsoft.servicefabric.actors.runtime.FabricActor;
+import microsoft.servicefabric.actors.runtime.StatePersistence;
+import microsoft.servicefabric.actors.runtime.StatePersistenceAttribute;
 import system.fabric.ConfigurationPackage;
-import system.fabric.ConfigurationProperty;
-import system.fabric.ConfigurationSection;
-import system.fabric.ConfigurationSettings;
+import system.fabric.description.ConfigurationProperty;
+import system.fabric.description.ConfigurationSection;
+import system.fabric.description.ConfigurationSettings;
+//import system.fabric.description.ConfigurationProperty;
+//import system.fabric.description.ConfigurationSection;
+//import system.fabric.description.ConfigurationSettings;
 import visualobjectcommon.VisualObject;
 import visualobjectcommon.VisualObjectActor;
 import microsoft.servicefabric.actors.ActorId;
-import microsoft.servicefabric.actors.FabricActorService;
+import microsoft.servicefabric.actors.runtime.FabricActorService;
 
 @ActorServiceAttribute(name = "VisualObjects.ActorService")
 @StatePersistenceAttribute(statePersistence = StatePersistence.Persisted)

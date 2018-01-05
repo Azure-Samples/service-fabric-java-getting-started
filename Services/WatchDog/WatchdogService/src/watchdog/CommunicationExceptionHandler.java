@@ -39,7 +39,7 @@ public class CommunicationExceptionHandler implements ExceptionHandler {
         }
 
         ExceptionHandlingThrowResult result = new ExceptionHandlingThrowResult();
-        result.setExceptionToThrow(ex);
+        result.setExceptionToThrow((Exception)ex);
         return result;
     }
 }

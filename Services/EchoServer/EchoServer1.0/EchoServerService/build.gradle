@@ -11,45 +11,21 @@ sourceSets {
    }
 }
 
-clean.doFirst{
-    delete "${projectDir}/lib"
+dependencies {
+    compile fileTree(dir: '/home/vishnu/depot/lib', include: ['*.jar'])
+}
+
+clean.doFirst {
     delete "${projectDir}/out"
     delete "${projectDir}/../EchoServerApplication/EchoServerPkg/Code/lib"
     delete "${projectDir}/../EchoServerApplication/EchoServerPkg/Code/echoserver.jar"
 }
 
-repositories {
-        mavenCentral()
-}
-    
-configurations {
-    azuresf
-}
-
-dependencies {
-    azuresf ('com.microsoft.servicefabric:sf-services:1.0.0-preview2') 
-    compile fileTree(dir: 'lib', include: '*.jar')
-}
-
-task explodeDeps(type: Copy, dependsOn:configurations.azuresf) { task ->
-    configurations.azuresf.filter { it.toString().contains("native") }.each{
-        from zipTree(it)
-    }
-    configurations.azuresf.filter { !it.toString().contains("native") }.each {
-        from it
-    }
-    into "lib"
-    include "libj*.so", "*.jar"
-}
-
-compileJava.dependsOn(explodeDeps)
-
 jar {
     manifest {
-      def mpath = configurations.azuresf.collect {'lib/'+it.getName()}.join (' ')
     attributes(
         'Main-Class': 'echoserver.EchoServerServiceHost',
-        "Class-Path": mpath)
+        "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
     baseName "echoserver"
     destinationDir = file('./../EchoServerApplication/EchoServerPkg/Code/')
     }
@@ -57,9 +33,14 @@ jar {
 
 task copyDeps<< {
     copy {
-        from("lib/")
+        from("/home/vishnu/depot/lib")
         into("./../EchoServerApplication/EchoServerPkg/Code/lib")
-        include('*')
+        include('*.jar')
+    }
+    copy {
+        from("/home/vishnu/depot/lib")
+        into("./../EchoServerApplication/EchoServerPkg/Code/lib")
+        include('libj*.so')
     }
 }
 

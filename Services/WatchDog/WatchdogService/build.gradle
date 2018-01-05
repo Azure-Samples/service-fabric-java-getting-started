@@ -10,45 +10,21 @@ sourceSets {
    }
 }
 
-clean.doFirst{
-    delete "${projectDir}/lib"
-    delete "${projectDir}/out"
-    delete "${projectDir}/../WatchdogApplication/WatchdogPkg/Code/lib"
-    delete "${projectDir}/../WatchdogApplication/WatchdogPkg/Code/watchdog.jar"
-}
-
-repositories {
-        mavenCentral()
-}
-    
-configurations {
-    azuresf
-}
-
 dependencies {
-    azuresf ('com.microsoft.servicefabric:sf-services:1.0.0-preview2') 
-    compile fileTree(dir: 'lib', include: '*.jar')
+    compile fileTree(dir: '/home/vishnu/depot/lib', include: ['*.jar'])
 }
 
-task explodeDeps(type: Copy, dependsOn:configurations.azuresf) { task ->
-    configurations.azuresf.filter { it.toString().contains("native") }.each{
-        from zipTree(it)
-    }
-    configurations.azuresf.filter { !it.toString().contains("native") }.each {
-        from it
-    }
-    into "lib"
-    include "libj*.so", "*.jar"
+clean.doFirst {
+    delete "${projectDir}/out"
+    delete "${projectDir}/../WatchdogApplication/WatchdogPkg/Code/watchdog.jar"
+    delete "${projectDir}/../WatchdogApplication/WatchdogPkg/Code/lib"
 }
-
-compileJava.dependsOn(explodeDeps)
 
 jar {
     manifest {
-      def mpath = configurations.azuresf.collect {'lib/'+it.getName()}.join (' ')
     attributes(
         'Main-Class': 'watchdog.WatchDogServiceHost',
-        "Class-Path": mpath)
+        "Class-Path": configurations.compile.collect { 'lib/' + it.getName() }.join(' '))
     baseName "watchdog"
     destinationDir = file('./../WatchdogApplication/WatchdogPkg/Code/')
     }
@@ -56,9 +32,14 @@ jar {
 
 task copyDeps<< {
     copy {
-        from("lib/")
+        from("/home/vishnu/depot/lib")
         into("./../WatchdogApplication/WatchdogPkg/Code/lib")
-        include('*')
+        include('*.jar')
+    }
+    copy {
+        from("/home/vishnu/depot/lib")
+        into("./../WatchdogApplication/WatchdogPkg/Code/lib")
+        include('libj*.so')
     }
 }
 
