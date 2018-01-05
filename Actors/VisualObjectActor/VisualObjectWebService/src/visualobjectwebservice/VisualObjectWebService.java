@@ -17,9 +17,9 @@ import java.util.logging.Logger;
 import microsoft.servicefabric.services.communication.runtime.ServiceInstanceListener;
 import microsoft.servicefabric.services.runtime.StatelessService;
 import system.fabric.ConfigurationPackage;
-import system.fabric.ConfigurationProperty;
-import system.fabric.ConfigurationSection;
-import system.fabric.ConfigurationSettings;
+import system.fabric.description.ConfigurationProperty;
+import system.fabric.description.ConfigurationSection;
+import system.fabric.description.ConfigurationSettings;
 import system.fabric.description.EndpointResourceDescription;
 
 public class VisualObjectWebService extends StatelessService {

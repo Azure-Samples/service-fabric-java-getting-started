@@ -11,7 +11,7 @@ import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import microsoft.servicefabric.actors.ActorExtensions;
 import microsoft.servicefabric.actors.ActorId;
-import microsoft.servicefabric.actors.ActorProxyBase;
+import microsoft.servicefabric.actors.client.ActorProxyBase;
 
 public class CounterClient {
 

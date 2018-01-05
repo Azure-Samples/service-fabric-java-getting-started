@@ -19,9 +19,9 @@ import microsoft.servicefabric.services.communication.runtime.ServiceInstanceLis
 import microsoft.servicefabric.services.communication.client.ExceptionHandler;
 import microsoft.servicefabric.services.runtime.StatelessService;
 import system.fabric.ConfigurationPackage;
-import system.fabric.ConfigurationProperty;
-import system.fabric.ConfigurationSection;
-import system.fabric.ConfigurationSettings;
+import system.fabric.description.ConfigurationProperty;
+import system.fabric.description.ConfigurationSection;
+import system.fabric.description.ConfigurationSettings;
 import system.fabric.description.EndpointResourceDescription;
 import system.fabric.CancellationToken;
 
