@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body>
+
+<script>
+var app = angular.module('VotingApp', ['ui.bootstrap']); 
+app.controller("VotingAppController", ['$rootScope', '$scope', '$http', '$timeout', function ($rootScope, $scope, $http, $timeout) {
+    $scope.votes = [];
+    
+    $scope.refresh = function () {
+        $http.get('getStatelessList')
+            .then(function successCallback(response) {
+     		$scope.votes = response.data;
+  		},
+  		function errorCallback(response) {
+      		alert(response);
+  		});
+    };
+
+    $scope.remove = function (item) {            
+       $http.get("removeItem", {params: { item: encodeURIComponent(item) }})
+       		.then(function successCallback(response) {
+     			$scope.refresh();
+  			},
+  			function errorCallback(response) {
+      			alert(response);
+  			});
+    };
+
+    $scope.add = function (item) {
+        if (!item) {return;}        
+       	$http.get("addItem", {params: { item: encodeURIComponent(item) }})
+   			.then(function successCallback(response) {
+ 				$scope.refresh();
+			},
+			function errorCallback(response) {
+  				alert(response);
+			});        
+    };
+}]);
+</script>
+
+<div ng-app="VotingApp" ng-controller="VotingAppController" ng-init="refresh()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 text-center">
+                <h2>Service Fabric Voting Sample</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <form class="col-xs-12 center-block">
+                    <div class="col-xs-6 form-group">
+                        <input id="txtAdd" type="text" class="form-control" placeholder="Add voting option" ng-model="item" />
+                    </div>
+                    <button id="btnAdd" class="btn btn-default" ng-click="add(item)">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Add
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="row">
+                    <div class="col-xs-4">
+                        Click to vote
+                    </div>
+                </div>
+                <div class="row top-buffer" ng-repeat="(key, value)  in votes">
+                    <div class="col-xs-8">
+                        <button class="btn btn-success text-left btn-block" ng-click="add(key)">
+                            <span class="pull-left">
+                                {{key}}
+                            </span>
+                            <span class="badge pull-right">
+                                {{value}} Votes
+                            </span>
+                        </button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-danger pull-right btn-block" ng-click="remove(key)">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
