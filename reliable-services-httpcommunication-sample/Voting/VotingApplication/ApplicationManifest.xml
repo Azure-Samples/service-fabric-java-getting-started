@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ApplicationManifest xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="VotingApplicationType" ApplicationTypeVersion="1.0.0">
+  <Description>Voting Application</Description>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="VotingDataServicePkg" ServiceManifestVersion="1.0.0"/>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+        <ServiceManifestRef ServiceManifestName="VotingWebPkg" ServiceManifestVersion="1.0.0"/>
+    </ServiceManifestImport>
+    <DefaultServices>
+      <Service Name="VotingDataService">
+         <StatefulService MinReplicaSetSize="3" ServiceTypeName="VotingDataServiceType" TargetReplicaSetSize="3">
+            <UniformInt64Partition HighKey="9223372036854775807" LowKey="-9223372036854775808" PartitionCount="1"/>
+         </StatefulService>         
+      </Service>      
+   <Service Name="VotingWeb">
+            <StatelessService InstanceCount="1" ServiceTypeName="VotingWebType">
+                <SingletonPartition/>
+            </StatelessService>
+        </Service>
+    </DefaultServices>      
+</ApplicationManifest>

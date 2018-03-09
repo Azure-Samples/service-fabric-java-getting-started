@@ -1,0 +1,42 @@
+// ------------------------------------------------------------
+//  Copyright (c) Microsoft Corporation.  All rights reserved.
+//  Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
+// ------------------------------------------------------------
+package statelessservice;
+
+import java.net.ConnectException;
+import java.util.concurrent.CompletionException;
+
+import microsoft.servicefabric.services.communication.client.ExceptionHandler;
+import microsoft.servicefabric.services.communication.client.ExceptionHandlingResult;
+import microsoft.servicefabric.services.communication.client.ExceptionHandlingRetryResult;
+import microsoft.servicefabric.services.communication.client.ExceptionHandlingThrowResult;
+import microsoft.servicefabric.services.communication.client.ExceptionInformation;
+import microsoft.servicefabric.services.communication.client.OperationRetrySettings;
+
+public class CommunicationExceptionHandler implements ExceptionHandler {
+
+    @Override
+    public ExceptionHandlingResult handleException(
+            ExceptionInformation exceptionInformation,
+            OperationRetrySettings retrySettings) {        
+
+        Exception ex = exceptionInformation.getException();
+        if (ex instanceof CompletionException) {
+            Throwable t = ((CompletionException) ex).getCause();
+            while (t instanceof RuntimeException)
+                t = ((RuntimeException) t).getCause();
+
+            if (t instanceof ConnectException) {
+                ExceptionHandlingRetryResult exceptionHandlingRetryResult =
+                        new ExceptionHandlingRetryResult(exceptionInformation.getException(), false, retrySettings
+                                .getMaxRetryBackoffIntervalOnNonTransientErrors(), retrySettings.getDefaultMaxRetryCount());
+                return exceptionHandlingRetryResult;
+            }
+        }
+
+        ExceptionHandlingThrowResult result = new ExceptionHandlingThrowResult();
+        result.setExceptionToThrow(ex);
+        return result;
+    }
+}
