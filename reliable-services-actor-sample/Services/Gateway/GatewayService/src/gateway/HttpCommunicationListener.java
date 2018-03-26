@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import microsoft.servicefabric.actors.ActorExtensions;
 import microsoft.servicefabric.actors.ActorId;
-import microsoft.servicefabric.actors.ActorProxyBase;
+import microsoft.servicefabric.actors.client.ActorProxyBase;
 import microsoft.servicefabric.services.communication.runtime.CommunicationListener;
 import system.fabric.ServiceContext;
 import system.fabric.CancellationToken;

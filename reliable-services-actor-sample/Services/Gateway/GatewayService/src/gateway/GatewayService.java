@@ -18,9 +18,9 @@ import microsoft.servicefabric.services.communication.runtime.ServiceInstanceLis
 import microsoft.servicefabric.services.runtime.StatelessService;
 import microsoft.servicefabric.services.runtime.StatelessServiceContext;
 import system.fabric.ConfigurationPackage;
-import system.fabric.ConfigurationProperty;
-import system.fabric.ConfigurationSection;
-import system.fabric.ConfigurationSettings;
+import system.fabric.description.ConfigurationProperty;
+import system.fabric.description.ConfigurationSection;
+import system.fabric.description.ConfigurationSettings;
 import system.fabric.description.EndpointResourceDescription;
 
 public class GatewayService extends StatelessService {
