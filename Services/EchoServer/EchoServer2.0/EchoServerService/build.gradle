@@ -27,7 +27,7 @@ configurations {
 }
 
 dependencies {
-    azuresf ('com.microsoft.servicefabric:sf-services:1.0.0-preview2') 
+    azuresf ('com.microsoft.servicefabric:sf-services:1.0.0')
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 

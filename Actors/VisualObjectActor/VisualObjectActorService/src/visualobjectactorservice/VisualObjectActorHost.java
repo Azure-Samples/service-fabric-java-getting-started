@@ -9,7 +9,7 @@ import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import microsoft.servicefabric.actors.ActorRuntime;
+import microsoft.servicefabric.actors.runtime.ActorRuntime;
 
 public class VisualObjectActorHost {
 

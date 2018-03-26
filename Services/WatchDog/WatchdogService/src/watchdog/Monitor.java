@@ -13,10 +13,11 @@ import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import system.fabric.FabricClient;
-import system.fabric.HealthClient;
+import system.fabric.client.HealthClient;
 import system.fabric.health.HealthInformation;
 import system.fabric.health.HealthState;
-import system.fabric.health.ServiceHealthReport;
+import system.fabric.health.internal.ServiceHealthReport;
+import system.fabric.WrapperUtility;
 
 public class Monitor {
 
@@ -28,7 +29,7 @@ public class Monitor {
     public void reportHealth(HttpCommunicationClient client) {
         if (this.fabricClient == null || this.healthClient == null) {
             this.fabricClient = new FabricClient();
-            this.healthClient = this.fabricClient.getHealthManager();
+            this.healthClient = WrapperUtility.FabricClient.getHealthManager(this.fabricClient);
         }
 
         if (this.fabricClient == null || this.healthClient == null) {

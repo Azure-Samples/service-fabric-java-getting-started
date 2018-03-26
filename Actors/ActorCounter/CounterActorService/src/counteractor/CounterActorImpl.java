@@ -8,12 +8,12 @@ package counteractor;
 import counterinterface.CounterActor;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
-import microsoft.servicefabric.actors.ActorServiceAttribute;
-import microsoft.servicefabric.actors.FabricActor;
-import microsoft.servicefabric.actors.StatePersistence;
-import microsoft.servicefabric.actors.StatePersistenceAttribute;
+import microsoft.servicefabric.actors.runtime.ActorServiceAttribute;
+import microsoft.servicefabric.actors.runtime.FabricActor;
+import microsoft.servicefabric.actors.runtime.StatePersistence;
+import microsoft.servicefabric.actors.runtime.StatePersistenceAttribute;
 import microsoft.servicefabric.actors.ActorId;
-import microsoft.servicefabric.actors.FabricActorService;
+import microsoft.servicefabric.actors.runtime.FabricActorService;
 
 /**
 StatePersistenceAttribute can be of 3 types - persisted, volatile, null. 
