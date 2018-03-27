@@ -1,0 +1,4 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+defaultTasks 'clean', 'jar', 'copyDeps'
