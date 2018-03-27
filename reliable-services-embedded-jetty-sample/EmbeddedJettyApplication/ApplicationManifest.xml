@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationManifest
+  ApplicationTypeName="EmbeddedJettyApplicationType"
+  ApplicationTypeVersion="1.0.0"
+  xmlns="http://schemas.microsoft.com/2011/01/fabric"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  >
+  <Description>EmbeddedJetty Application</Description>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="EmbeddedJettyServerPkg" ServiceManifestVersion="1.0.0"/>
+  </ServiceManifestImport>
+  <DefaultServices>
+      <Service Name="EmbeddedJettyServer">
+         <StatelessService ServiceTypeName="EmbeddedJettyServerType" InstanceCount="1">
+            <SingletonPartition />
+         </StatelessService>
+      </Service>      
+   </DefaultServices>      
+</ApplicationManifest>

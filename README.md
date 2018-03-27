@@ -22,3 +22,7 @@ This folder contains an application that uses the Service Fabric Reliable Actors
 ### reliable-services-httpcommunication-sample
 
 This folder contains an application composed of two microservices. The frontend service communicates with the backend service using Http. This is a good sample that illustrates how two microservices in Service Fabric can communicate with each other using Http protocols. 
+
+### reliable-services-embedded-jetty-sample
+
+This folder contains a service that stands up a Jetty server within a Service Fabric stateless service. The Jetty server is a very simple server that is stood up within a stateless service. 

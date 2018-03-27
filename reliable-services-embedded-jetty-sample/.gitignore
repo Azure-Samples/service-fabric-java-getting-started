@@ -1,0 +1,14 @@
+# For Java
+.gradle
+*.class
+.classpath
+.project
+/**/build/**/*
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.dll
+*.so
+*.DS_Store
