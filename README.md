@@ -26,3 +26,10 @@ This folder contains an application composed of two microservices. The frontend 
 ### reliable-services-embedded-jetty-sample
 
 This folder contains a service that stands up a Jetty server within a Service Fabric stateless service. The Jetty server is a very simple server that is stood up within a stateless service. 
+
+### Steps to load a project in eclipse
+
+1. Import the project using "Import Projects form File System or Archive" wizard.
+2. Build the project form the Service Fabric context menu.
+3. Perform "Refresh Gradle Project" from Gradle context menu.
+4. If the imported project has a web service configure your workspace/project ignore Forbidden reference errors.
