@@ -14,21 +14,16 @@ import microsoft.servicefabric.services.runtime.StatelessService;
 
 public class EmbeddedJettyServerService extends StatelessService {
 
-	private static final Logger logger = Logger.getLogger(EmbeddedJettyServerService.class.getName());
+    private static final String webEndpointName = "WebEndpoint";
 
     @Override
     protected List<ServiceInstanceListener> createServiceInstanceListeners() {
     	
-    		Map<String, EndpointResourceDescription> endpointsMap = this.getServiceContext().getCodePackageActivationContext().getEndpoints();
+        EndpointResourceDescription endpoint = this.getServiceContext().getCodePackageActivationContext().getEndpoint(webEndpointName);
+        int port = endpoint.getPort();
         
-    		logger.log(Level.INFO, Integer.toString(endpointsMap.size()));
         List<ServiceInstanceListener> listeners = new ArrayList<ServiceInstanceListener>();
-        
-        for (String key: endpointsMap.keySet()) {
-        		int port = endpointsMap.get(key).getPort();
-    			logger.log(Level.INFO, "Key is: "+ key + "Port is: " + port);
-            listeners.add(new ServiceInstanceListener((context) -> new HttpCommunicationListener(context, port)));        		
-        }
+        listeners.add(new ServiceInstanceListener((context) -> new HttpCommunicationListener(context, port)));
         return listeners;
     }
     

@@ -35,47 +35,46 @@ public class HttpCommunicationListener implements CommunicationListener {
         this.port = port;
     }
     
-    	public static class HelloServlet extends HttpServlet 
-    	{
-    		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    		{
-    			response.setContentType("text/html");
-    			response.setStatus(HttpServletResponse.SC_OK);
-    			response.getWriter().println("<h1>New Hello Simple Servlet</h1>"); 
-        } 
+    public static class HelloServlet extends HttpServlet 
+    {
+      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+      {
+        response.setContentType("text/html");
+        response.setStatus(HttpServletResponse.SC_OK);
+        response.getWriter().println("<h1>New Hello Simple Servlet</h1>"); 
+      } 
     }
 
     @Override
     public CompletableFuture<String> openAsync(CancellationToken cancellationToken) {
-	    	server = new Server(this.port);
-	    	logger.log(Level.INFO, "Port is: " +this.port);
-	    	try {
-	    		ServletHandler servletHandler = new ServletHandler();
-	    		server.setHandler(servletHandler);
-	    				
-	    		servletHandler.addServletWithMapping(HelloServlet.class, "/");
-	    		
-	    		server.start();
-	    		server.join();
-	    	} catch (Exception e) {          
-	    		e.printStackTrace();
-	    	} 
-	    	String publishUri = String.format("http://%s:%d/", this.context.getNodeContext().getIpAddressOrFQDN(), port);
+        server = new Server(this.port);
+        logger.log(Level.INFO, "Port is: " +this.port);
+        try {
+          ServletHandler servletHandler = new ServletHandler();
+          server.setHandler(servletHandler);
+
+          servletHandler.addServletWithMapping(HelloServlet.class, "/");
+
+          server.start();
+        } catch (Exception e) {          
+          e.printStackTrace();
+        } 
+        String publishUri = String.format("http://%s:%d/", this.context.getNodeContext().getIpAddressOrFQDN(), port);
         return CompletableFuture.completedFuture(publishUri);
     }
 
     @Override
     public CompletableFuture<?> closeAsync(CancellationToken cancellationToken) {
-    		logger.log(Level.INFO, "Close Async");
-    		
-    		CompletableFuture cf = CompletableFuture.runAsync(() -> {
-    			try {
-				server.stop();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-    		});
-        return CompletableFuture.completedFuture(true);
+        logger.log(Level.INFO, "Close Async");
+
+        CompletableFuture cf = CompletableFuture.runAsync(() -> {
+          try {
+            server.stop();				
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        });
+        return CompletableFuture.completedFuture(cf);
     }
 
 	@Override
