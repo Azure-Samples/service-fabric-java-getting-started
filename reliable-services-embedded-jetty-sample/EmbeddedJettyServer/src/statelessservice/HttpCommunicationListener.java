@@ -74,7 +74,7 @@ public class HttpCommunicationListener implements CommunicationListener {
             e.printStackTrace();
           }
         });
-        return CompletableFuture.completedFuture(true);
+        return CompletableFuture.completedFuture(cf);
     }
 
 	@Override
