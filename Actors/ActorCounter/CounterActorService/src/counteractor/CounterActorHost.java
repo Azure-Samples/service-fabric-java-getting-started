@@ -9,8 +9,8 @@ import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import microsoft.servicefabric.actors.ActorRuntime;
-import microsoft.servicefabric.actors.FabricActorService;
+import microsoft.servicefabric.actors.runtime.ActorRuntime;
+import microsoft.servicefabric.actors.runtime.FabricActorService;
 
 public class CounterActorHost {
 
