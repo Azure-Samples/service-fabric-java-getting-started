@@ -5,7 +5,9 @@
     <Parameter Name="ReplicatorEndpoint" Value="ReplicatorEndpoint" />
   </Section>
   <!-- This is used for securing StateManager's replication traffic. -->
-  <Section Name="ReplicatorSecurityConfig" />
+  <Section Name="ReplicatorSecurityConfig" >
+      <Parameter Name="CredentialType" Value="None" />
+   </Section>
 
   <!-- Add your custom configuration sections and parameters here. -->
   <!--
