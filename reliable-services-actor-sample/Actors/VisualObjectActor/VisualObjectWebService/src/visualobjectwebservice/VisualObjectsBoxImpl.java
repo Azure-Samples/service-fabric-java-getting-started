@@ -13,7 +13,7 @@ import java.util.StringJoiner;
 import java.util.concurrent.CompletableFuture;
 
 import microsoft.servicefabric.actors.ActorId;
-import microsoft.servicefabric.actors.ActorProxyBase;
+import microsoft.servicefabric.actors.client.ActorProxyBase;
 import visualobjectcommon.VisualObjectActor;
 
 public class VisualObjectsBoxImpl implements VisualObjectsBox {
