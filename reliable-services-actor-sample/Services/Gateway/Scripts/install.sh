@@ -1,6 +1,13 @@
 #!/bin/bash
 set -x
-
+create_app()
+{
+  if [ $# -eq 0 ]; then
+    sfctl application create --app-name fabric:/GatewayApplication --app-type GatewayApplicationType --app-version 1.0.0
+  else
+    sfctl application create --app-name fabric:/GatewayApplication --app-type GatewayApplicationType --app-version 1.0.0 --parameters "{\"InstanceCount\":\"-1\"}"
+  fi
+}
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 appPkg="$DIR/../GatewayApplication"
 
@@ -10,13 +17,13 @@ sfctl application provision --application-type-build-path GatewayApplication
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied, proceed with default instanceCount of 1"
-    sfctl application create --app-name fabric:/GatewayApplication --app-type GatewayApplicationType --app-version 1.0.0
-  elif [ $1 = 0 ]
+    create_app
+  elif [ $1 = "onebox" ]
   then
     echo "Onebox environment, proceed with default instanceCount of 1."
-    sfctl application create --app-name fabric:/GatewayApplication --app-type GatewayApplicationType --app-version 1.0.0
-  elif [ $1 = 1 ]
+    create_app
+  elif [ $1 = "multinode" ]
   then
     echo "Multinode env, proceed with default instanceCount of -1"
-    sfctl application create --app-name fabric:/GatewayApplication --app-type GatewayApplicationType --app-version 1.0.0 --parameters "{\"InstanceCount\":\"-1\"}"
+    create_app 1
 fi
