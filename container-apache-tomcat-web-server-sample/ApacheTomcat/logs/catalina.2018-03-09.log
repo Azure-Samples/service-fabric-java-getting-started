@@ -1,0 +1,49 @@
+09-Mar-2018 15:23:06.980 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/9.0.5
+09-Mar-2018 15:23:06.983 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 6 2018 21:42:23 UTC
+09-Mar-2018 15:23:06.983 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         9.0.5.0
+09-Mar-2018 15:23:06.983 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+09-Mar-2018 15:23:06.983 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.13.3
+09-Mar-2018 15:23:06.983 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          x86_64
+09-Mar-2018 15:23:06.983 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/jre
+09-Mar-2018 15:23:06.984 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_152-b16
+09-Mar-2018 15:23:06.985 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+09-Mar-2018 15:23:06.985 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5
+09-Mar-2018 15:23:06.985 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5
+09-Mar-2018 15:23:06.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/conf/logging.properties
+09-Mar-2018 15:23:06.987 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+09-Mar-2018 15:23:06.987 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+09-Mar-2018 15:23:06.987 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+09-Mar-2018 15:23:06.987 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+09-Mar-2018 15:23:06.987 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5
+09-Mar-2018 15:23:06.987 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5
+09-Mar-2018 15:23:06.987 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/temp
+09-Mar-2018 15:23:06.987 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/suhuruli/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+09-Mar-2018 15:23:07.142 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-9999"]
+09-Mar-2018 15:23:07.179 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+09-Mar-2018 15:23:07.188 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+09-Mar-2018 15:23:07.190 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+09-Mar-2018 15:23:07.190 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 632 ms
+09-Mar-2018 15:23:07.232 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+09-Mar-2018 15:23:07.233 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/9.0.5
+09-Mar-2018 15:23:07.241 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/docs]
+09-Mar-2018 15:23:07.665 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/docs] has finished in [424] ms
+09-Mar-2018 15:23:07.666 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/manager]
+09-Mar-2018 15:23:07.710 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/manager] has finished in [44] ms
+09-Mar-2018 15:23:07.710 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/examples]
+09-Mar-2018 15:23:08.014 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/examples] has finished in [304] ms
+09-Mar-2018 15:23:08.014 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/ROOT]
+09-Mar-2018 15:23:08.029 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/ROOT] has finished in [15] ms
+09-Mar-2018 15:23:08.029 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/hello]
+09-Mar-2018 15:23:08.051 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/hello] has finished in [22] ms
+09-Mar-2018 15:23:08.052 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/host-manager]
+09-Mar-2018 15:23:08.070 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/suhuruli/Documents/Work/Playground/Tomcat/apache-tomcat-9.0.5/webapps/host-manager] has finished in [18] ms
+09-Mar-2018 15:23:08.073 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-9999"]
+09-Mar-2018 15:23:08.082 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+09-Mar-2018 15:23:08.084 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 893 ms
+09-Mar-2018 17:22:12.614 INFO [Thread-5] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-9999"]
+09-Mar-2018 17:22:12.629 INFO [Thread-5] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-8009"]
+09-Mar-2018 17:22:12.683 INFO [Thread-5] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+09-Mar-2018 17:22:12.712 INFO [Thread-5] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-9999"]
+09-Mar-2018 17:22:12.717 INFO [Thread-5] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8009"]
+09-Mar-2018 17:22:12.720 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-9999"]
+09-Mar-2018 17:22:12.721 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]

@@ -15,6 +15,14 @@ Voting Application | This folder is the Application Package that gets published 
 VotingDataService | This folder contains the source code for the backend stateful reliable service. Uses [Reliable Collections](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections) to store voting data. | 
 VotingWeb | This folder contains the source code for the front end stateless reliable service. This service stands up the Voting UI and communicates with the backend service to store and delete votes. 
 
+
+### Steps to load a project in eclipse
+
+1. Import the project using "Import Projects form File System or Archive" wizard.
+2. Build the project form the Service Fabric context menu.
+3. Perform "Refresh Gradle Project" from Gradle context menu.
+4. If the imported project has a web service configure your workspace/project ignore Forbidden reference errors.
+
 ## Next steps 
 
 * [How to use service remoting for communication between services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication-remoting-java)
