@@ -14,6 +14,13 @@ PublishProfiles | Contains JSON files that define the cluster the application is
 EmbeddedJettyApplication | This folder is the Application Package that gets published to Service Fabric. It contains the manifest that defines the application and packages defining each service. For more information on the application model, please visit our [documentation](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-application-model).| 
 EmbeddedJettyServer | This folder contains the source code for the stateless service that runs the embedded Jetty server. 
 
+### Steps to load a project in eclipse
+
+1. Import the project using "Import Projects form File System or Archive" wizard.
+2. Build the project form the Service Fabric context menu.
+3. Perform "Refresh Gradle Project" from Gradle context menu.
+4. If the imported project has a web service configure your workspace/project ignore Forbidden reference errors.
+
 ## Next steps 
 
 * [How to use service remoting for communication between services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication-remoting-java)

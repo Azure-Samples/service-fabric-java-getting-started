@@ -41,6 +41,14 @@ This stateless service sample demostrates writing a web frontend for your actor 
 
 This stateless service demostrates a watch dog application which is monitoring the EchoServer application. Once you have depployed EchoServer and WatchDog application, you would see that if EchoServer application goes down or for some reason the applications web endpoint is not reachable, an error health is reported by WatchDog for the EchoServer application in the Service Fabric health subsystem. Apart from this, this application also shows inter service communication by forwarding the web requests to Echo Server application. You can view this by going to browser @ http://localhost:12345/getMessage to see the output coming from EchoServer. 
 
+
+### Steps to load a project in eclipse
+
+1. Import the project using "Import Projects form File System or Archive" wizard.
+2. Build the project form the Service Fabric context menu.
+3. Perform "Refresh Gradle Project" from Gradle context menu.
+4. If the imported project has a web service configure your workspace/project ignore Forbidden reference errors.
+
 ## Compiling and deploying using command line 
 
 1. Set up your developer environment for [Linux](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-linux) or [Mac](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-mac)

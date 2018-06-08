@@ -26,3 +26,7 @@ This folder contains an application composed of two microservices. The frontend 
 ### reliable-services-embedded-jetty-sample
 
 This folder contains a service that stands up a Jetty server within a Service Fabric stateless service. The Jetty server is a very simple server that is stood up within a stateless service. 
+
+### container-apache-tomcat-web-server-sample
+
+This folder contains an Apache Tomcat Web server that runs inside a container. This web server hosts a simple Hello World Java application. 
