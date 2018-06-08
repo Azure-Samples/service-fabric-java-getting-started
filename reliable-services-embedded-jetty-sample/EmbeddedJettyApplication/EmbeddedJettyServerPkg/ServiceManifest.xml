@@ -16,7 +16,7 @@
   
    <Resources>
       <Endpoints>
-      	<Endpoint Name="WebEndpoint" Protocol="http" Port="8080" />
+      	<Endpoint Name="WebEndpoint" Protocol="http" Port="8081" />
       </Endpoints>
    </Resources>
    
