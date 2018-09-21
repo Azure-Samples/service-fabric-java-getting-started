@@ -20,9 +20,9 @@ fi
 params=$(sfctl application info --application-id GatewayApplication --query "parameters[].[key, value][]")
 version=$(sed -e "s/xmlns/ignore/" $appPkg/ApplicationManifest.xml | xmllint --xpath "string(//ApplicationManifest/@ApplicationTypeVersion)" -)
 if [[ $params =~ "InstanceCount" ]]; then
-    sfctl application upgrade --app-id GatewayApplication --app-version ${version} --parameters "{\"InstanceCount\":\"-1\"}" --mode "Monitored"
+    sfctl application upgrade --application-id GatewayApplication --application-version ${version} --parameters "{\"InstanceCount\":\"-1\"}" --mode "Monitored"
 else
-    sfctl application upgrade --app-id GatewayApplication --app-version ${version} --parameters "{}" --mode "Monitored"
+    sfctl application upgrade --application-id GatewayApplication --application-version ${version} --parameters "{}" --mode "Monitored"
 fi
 if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
