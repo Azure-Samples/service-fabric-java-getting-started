@@ -17,7 +17,7 @@ if [ $? -ne 0 ]; then
 fi
 
 version=$(sed -e "s/xmlns/ignore/" $appPkg/ApplicationManifest.xml | xmllint --xpath "string(//ApplicationManifest/@ApplicationTypeVersion)" -)
-eval sfctl application upgrade --app-id CounterActorApplication --app-version ${version} --parameters "" --mode "Monitored"
+eval sfctl application upgrade --application-id CounterActorApplication --application-version ${version} --parameters "{}" --mode "Monitored"
 if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
     exit 1
