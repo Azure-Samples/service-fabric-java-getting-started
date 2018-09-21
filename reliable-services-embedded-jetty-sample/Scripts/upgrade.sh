@@ -17,7 +17,7 @@ if [ $? -ne 0 ]; then
     echo "Application type registration failed."
     exit 1
 fi
-sfctl application upgrade --app-id fabric:/EmbeddedJettyApplication --app-version ${version} --parameters [] --mode "Monitored"
+sfctl application upgrade --app-id fabric:/EmbeddedJettyApplication --app-version ${version} --parameters {} --mode "Monitored"
 if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
     exit 1

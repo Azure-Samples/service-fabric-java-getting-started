@@ -22,7 +22,7 @@ version=$(sed -e "s/xmlns/ignore/" $appPkg/ApplicationManifest.xml | xmllint --x
 if [[ $params =~ "InstanceCount" ]]; then
     sfctl application upgrade --app-id WatchdogApplication --app-version ${version} --parameters "{\"InstanceCount\":\"-1\"}" --mode "Monitored"
 else
-    sfctl application upgrade --app-id WatchdogApplication --app-version ${version} --parameters "" --mode "Monitored"
+    sfctl application upgrade --app-id WatchdogApplication --app-version ${version} --parameters "{}" --mode "Monitored"
 fi
 if [ $? -ne 0 ]; then
     echo "Upgrade of application failed."
