@@ -4,7 +4,6 @@ apply plugin: 'eclipse'
 sourceSets {
   main {
      java.srcDirs = ['src']
-     output.classesDir = 'out/classes'
       resources {
        srcDirs = ['src']
      }
@@ -56,11 +55,13 @@ jar {
 
 compileJava.dependsOn(explodeDeps)
 
-task copyDeps<< {
-    copy {
-        from("lib/")
-        into("../VotingApplication/VotingDataServicePkg/Code/lib")
-        include('*')
+task copyDeps{
+    doLast{
+        copy {
+            from("lib/")
+            into("../VotingApplication/VotingDataServicePkg/Code/lib")
+            include('*')
+        }
     }
 }
 

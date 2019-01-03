@@ -12,7 +12,6 @@ allprojects {
 sourceSets {
   main {
      java.srcDirs = ['src']
-     output.classesDir = 'out/classes'
       resources {
        srcDirs = ['src']
      }
@@ -65,16 +64,18 @@ jar {
     }
 }
 
-task copyDeps<< {
-    copy {
-        from("lib/")
-        into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
-        include('*')
-    }
-    copy {
-        from("./../VisualObjectCommon/out/lib")
-        into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
-        include('*.jar')
+task copyDeps{
+    doLast{
+        copy {
+            from("lib/")
+            into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
+            include('*')
+        }
+        copy {
+            from("./../VisualObjectCommon/out/lib")
+            into("../VisualObjectApplication/VisualObjects.WebServicePkg/Code/lib")
+            include('*.jar')
+        }
     }
 }
 

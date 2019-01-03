@@ -4,7 +4,6 @@ apply plugin: 'eclipse'
 sourceSets {
   main {
 	java.srcDirs = ['src']
-    output.classesDir = 'out/classes'
     resources {
 		srcDirs = ['src']
     }
@@ -56,7 +55,8 @@ jar
     destinationDir = file('out/lib')
 }
 
-task copyDeps<< {
+task copyDeps{
+    doLast{
         copy {
                 from("lib/")
                 into("./out/lib/lib")
@@ -67,6 +67,7 @@ task copyDeps<< {
                 into("./out/lib/lib")
                 include('*.jar')
         }
+    }
 }
 
 defaultTasks 'clean', 'jar', 'copyDeps'

@@ -5,7 +5,11 @@ subprojects {
     apply plugin: 'java'
 } 
 allprojects {
-  task hello << { task -> println "I'm $task.project.name" }
+  task hello { 
+    doLast{ task ->
+      println "I'm $task.project.name" 
+    }
+  }
 }
 task runDefaultTasks {
     subprojects.each { subproject ->subproject.defaultTasks.each {
@@ -31,18 +35,19 @@ task clusterconnect(type:Exec){
      commandLine '/bin/bash', 'Scripts/connect.sh'
     }
 }
-task launch()<<{
-  
-        if ( Eval.me(config)=='deploy' ) {
-         tasks.deploy.exec()
-        }
-        else if ( Eval.me(config)=='redeploy' ) {
-          tasks.undeploy.exec()
-          tasks.deploy.exec()
-        }
-        else if (Eval.me(config)=='upgrade'){
-        tasks.upgrade.exec()
-        }
+task launch(){
+  doLast{
+    if ( Eval.me(config)=='deploy' ) {
+      tasks.deploy.exec()
+    }
+    else if ( Eval.me(config)=='redeploy' ) {
+      tasks.undeploy.exec()
+      tasks.deploy.exec()
+    }
+    else if (Eval.me(config)=='upgrade'){
+    tasks.upgrade.exec()
+    }
+}
 }
 
 defaultTasks 'clean', 'jar', 'copyDeps'

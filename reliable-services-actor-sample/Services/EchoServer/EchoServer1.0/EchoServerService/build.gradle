@@ -4,7 +4,6 @@ apply plugin: 'eclipse'
 sourceSets {
   main {
      java.srcDirs = ['src']
-     output.classesDir = 'out/classes'
       resources {
        srcDirs = ['src']
      }
@@ -55,11 +54,13 @@ jar {
     }
 }
 
-task copyDeps<< {
-    copy {
-        from("lib/")
-        into("./../EchoServerApplication/EchoServerPkg/Code/lib")
-        include('*')
+task copyDeps{
+    doLast{
+        copy {
+            from("lib/")
+            into("./../EchoServerApplication/EchoServerPkg/Code/lib")
+            include('*')
+        }
     }
 }
 

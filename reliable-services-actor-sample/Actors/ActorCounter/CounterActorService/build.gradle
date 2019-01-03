@@ -12,7 +12,6 @@ allprojects {
 sourceSets {
   main {
      java.srcDirs = ['src']
-     output.classesDir = 'out/classes'
       resources {
        srcDirs = ['src']
      }
@@ -65,16 +64,18 @@ jar {
     }
 }
 
-task copyDeps<< {
-    copy {
-        from("lib/")
-        into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-        include('*')
-    }
-    copy {
-        from("../CounterInterface/out/lib")
-        into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-        include('*.jar')
+task copyDeps{
+    doLast{
+        copy {
+            from("lib/")
+            into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+            include('*')
+        }
+        copy {
+            from("../CounterInterface/out/lib")
+            into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+            include('*.jar')
+        }
     }
 }
 

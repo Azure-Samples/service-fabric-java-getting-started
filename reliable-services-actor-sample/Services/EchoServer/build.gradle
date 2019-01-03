@@ -2,7 +2,11 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 allprojects {
-  task hello << { task -> println "I'm $task.project.name" }
+  task hello { 
+    doLast{ task ->
+      println "I'm $task.project.name" 
+    }
+  }
 }
 
 defaultTasks 'clean', 'jar', 'copyDeps'
