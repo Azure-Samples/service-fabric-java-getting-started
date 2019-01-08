@@ -4,7 +4,6 @@ apply plugin: 'eclipse'
 sourceSets {
   main {
      java.srcDirs = ['src']
-     output.classesDir = 'out/classes'
       resources {
        srcDirs = ['src']
      }
@@ -27,7 +26,7 @@ configurations {
 }
 
 dependencies {
-    azuresf ('com.microsoft.servicefabric:sf-actors:1.0.0')
+    azuresf ('com.microsoft.servicefabric:sf-actors:1.0.1')
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 
@@ -56,11 +55,13 @@ jar {
 
 compileJava.dependsOn(explodeDeps)
 
-task copyDeps<< {
-    copy {
-        from("lib/")
-        into("../VotingApplication/VotingWebPkg/Code/lib")
-        include('*')
+task copyDeps{
+    doLast{
+        copy {
+            from("lib/")
+            into("../VotingApplication/VotingWebPkg/Code/lib")
+            include('*')
+        }
     }
 }
 

@@ -12,7 +12,6 @@ allprojects {
 sourceSets {
   main {
      java.srcDirs = ['src']
-     output.classesDir = 'out/classes'
       resources {
        srcDirs = ['src']
      }
@@ -36,7 +35,7 @@ configurations {
 
 dependencies {
     compile project(':Interface')
-    azuresf ('com.microsoft.servicefabric:sf-actors:1.0.0')
+    azuresf ('com.microsoft.servicefabric:sf-actors:1.0.1')
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 
@@ -65,16 +64,18 @@ jar {
     }
 }
 
-task copyDeps<< {
-    copy {
-        from("lib/")
-        into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-        include('*')
-    }
-    copy {
-        from("../CounterInterface/out/lib")
-        into("./../CounterActorApplication/CounterActorPkg/Code/lib")
-        include('*.jar')
+task copyDeps{
+    doLast{
+        copy {
+            from("lib/")
+            into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+            include('*')
+        }
+        copy {
+            from("../CounterInterface/out/lib")
+            into("./../CounterActorApplication/CounterActorPkg/Code/lib")
+            include('*.jar')
+        }
     }
 }
 

@@ -5,8 +5,13 @@ subprojects {
     apply plugin: 'java'
 } 
 allprojects {
-  task hello << { task -> println "I'm $task.project.name" }
+  task hello { 
+    doLast{ task ->
+      println "I'm $task.project.name" 
+    }
+  }
 }
+
     task runDefaultTasks {
         subprojects.each { subproject ->subproject.defaultTasks.each {
                         dependsOn subproject.path+":"+it
