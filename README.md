@@ -1,7 +1,10 @@
 ---
-services: service-fabric
-platforms: java
-author: vturecek, raunakp, suhuruli
+topic: sample
+description: This sample contains a set of projects to help you get started with Service Fabric on Linux using Java as the development language. 
+languages:
+- java
+products:
+- azure
 ---
 
 # Getting started with Service Fabric with Java
