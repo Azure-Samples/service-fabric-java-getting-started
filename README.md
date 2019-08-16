@@ -5,9 +5,10 @@ languages:
 - java
 products:
 - azure
+ms.custom: seo-java-august2019 ​
 ---
 
-# Getting started with Service Fabric with Java
+# Get started using Azure Service Fabric with Java
 
 This repository contains a set of simple sample projects to help you getting started with Service Fabric on Linux using java as the development language. 
 
