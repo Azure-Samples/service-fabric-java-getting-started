@@ -5,7 +5,6 @@ languages:
 - java
 products:
 - azure
-ms.custom: seo-java-august2019, seo-java-september2019 ​
 ---
 
 # Get started using Azure Service Fabric with Java
