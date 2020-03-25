@@ -5,6 +5,7 @@ languages:
 - java
 products:
 - azure
+- azure-service-fabric
 ---
 
 # Get started using Azure Service Fabric with Java
