@@ -4,7 +4,7 @@ set -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 appPkg="$DIR/../EchoServerApplication2"
 
-sfctl application upload --path $appPkg --show-progress
+sfctl application upload --path $appPkg --show-progress -t 1200
 sfctl application provision --application-type-build-path EchoServerApplication2
 
 # Check parameters to see if InstanceCount was previously specified

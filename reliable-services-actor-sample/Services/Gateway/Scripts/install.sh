@@ -19,7 +19,7 @@ fi
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 appPkg="$DIR/../GatewayApplication"
 
-sfctl application upload --path $appPkg --show-progress
+sfctl application upload --path $appPkg --show-progress -t 1200
 sfctl application provision --application-type-build-path GatewayApplication
 
 if [ $# -eq 0 ]

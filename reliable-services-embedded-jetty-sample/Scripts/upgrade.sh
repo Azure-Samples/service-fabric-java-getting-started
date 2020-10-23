@@ -7,7 +7,7 @@ if [[ "$#" != "0" ]];then
 else 
 	version="1.0.0"
 fi
-sfctl application upload --path $appPkgPath
+sfctl application upload --path $appPkgPath -t 1200
 if [ $? -ne 0 ]; then
     echo "Application copy failed."
     exit 1

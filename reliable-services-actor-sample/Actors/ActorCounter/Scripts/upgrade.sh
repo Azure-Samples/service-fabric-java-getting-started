@@ -4,7 +4,7 @@ set -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 appPkg="$DIR/../CounterActorApplication"
 
-sfctl application upload --path $appPkg --show-progress
+sfctl application upload --path $appPkg --show-progress -t 1200
 if [ $? -ne 0 ]; then
     echo "Application copy failed."
     exit 1

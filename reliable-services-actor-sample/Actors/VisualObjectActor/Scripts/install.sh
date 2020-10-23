@@ -19,7 +19,7 @@ fi
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 appPkg="$DIR/../VisualObjectApplication"
 
-sfctl application upload --path $appPkg --show-progress
+sfctl application upload --path $appPkg --show-progress -t 1200
 sfctl application provision --application-type-build-path VisualObjectApplication
 if [ $# -eq 0 ]
   then
